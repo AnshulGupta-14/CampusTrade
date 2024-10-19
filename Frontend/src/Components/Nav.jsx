@@ -9,6 +9,8 @@ import { errorHandler } from "../Utils/HandleError";
 
 const Nav = ({ data }) => {
   const accessToken = Cookies.get("accessToken");
+  console.log(accessToken);
+  
   const [showOver, setshowOver] = useState(false);
 
   const navigate = useNavigate();
