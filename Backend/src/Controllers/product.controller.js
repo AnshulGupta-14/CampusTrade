@@ -137,26 +137,25 @@ const removeAd = asyncHandler(async (req, res) => {
 });
 
 const getProducts = asyncHandler(async (req, res) => {
-  const users = await User.find({});
   // console.log(users);
   const token = req.cookies?.accessToken;
+  let currentUserId = null;
   if (token) {
-    const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-    const index = users.findIndex((item) => {
-      console.log(item._id, new ObjectId(decodedToken._id));
-      return item._id.equals(new ObjectId(decodedToken._id));
-    });
-    users.splice(index, 1);
+    try {
+      const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+      currentUserId = decodedToken._id; // Store the current user's ID
+    } catch (error) {
+      return res.status(401).json({ message: "Invalid or expired token" });
+    }
   }
 
-  const productIds = users.map((user) => user.products).flat();
-  const products = await Promise.all(
-    productIds.map(async (_id) => {
-      return await Product.findOne({ _id });
-    })
+  const users = await User.find({ _id: { $ne: currentUserId } }).populate(
+    "products"
   );
 
-  products.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const products = users
+    .flatMap((user) => user.products)
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   res
     .status(200)

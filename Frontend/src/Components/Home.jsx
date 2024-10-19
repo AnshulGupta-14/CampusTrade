@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 const Home = () => {
   const location = useLocation();
   // console.log(location);
-  
+
   const locomotiveScroll = new LocomotiveScroll();
 
   const [products, setproducts] = useState([]);
@@ -16,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     const url = "/products/get-products";
     axios
-      .get(url,{withCredentials: true})
+      .get(url, { withCredentials: true })
       .then((res) => {
         // console.log(res);
 
@@ -27,6 +27,15 @@ const Home = () => {
       .catch((err) => {
         errorHandler(err);
       });
+
+    const scroll = new LocomotiveScroll({
+      el: document.querySelector("[data-scroll-container]"),
+      smooth: true,
+    });
+
+    return () => {
+      scroll.destroy(); // Clean up the LocomotiveScroll instance
+    };
   }, [location]);
 
   return (
