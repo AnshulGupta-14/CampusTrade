@@ -7,7 +7,7 @@ const App = () => {
   const [products, setproducts] = useState([]);
 
   useEffect(() => {
-    const url = "/api/v1/products/get-products";
+    const url = "/products/get-products";
     axios
       .get(url)
       .then((res) => {
