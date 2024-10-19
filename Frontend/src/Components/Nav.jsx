@@ -9,8 +9,8 @@ import { errorHandler } from "../Utils/HandleError";
 
 const Nav = ({ data }) => {
   const accessToken = Cookies.get("accessToken");
-  console.log(Cookies);
-  
+  console.log(accessToken);
+
   const [showOver, setshowOver] = useState(false);
 
   const navigate = useNavigate();
@@ -156,10 +156,7 @@ const Nav = ({ data }) => {
                     >
                       FAVOURITES{" "}
                     </Link>
-                    <Link
-                      className="p-2 rounded-lg bg-blue-500"
-                      to="/my-ads"
-                    >
+                    <Link className="p-2 rounded-lg bg-blue-500" to="/my-ads">
                       MY ADS{" "}
                     </Link>
                     <Link
