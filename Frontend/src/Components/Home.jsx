@@ -27,15 +27,6 @@ const Home = () => {
       .catch((err) => {
         errorHandler(err);
       });
-
-    const scroll = new LocomotiveScroll({
-      el: document.querySelector("[data-scroll-container]"),
-      smooth: true,
-    });
-
-    return () => {
-      scroll.destroy(); // Clean up the LocomotiveScroll instance
-    };
   }, [location]);
 
   return (
