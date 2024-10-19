@@ -18,6 +18,8 @@ const Login = () => {
     axios
       .post(url, data, { withCredentials: true })
       .then((res) => {
+        console.log(res);
+        
         alert("You have been logged in successfully");
         navigate(-1);
       })
