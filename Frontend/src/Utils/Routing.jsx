@@ -8,11 +8,11 @@ import UserProfile from "../Components/UserProfile";
 import AddProduct from "../Components/AddProduct";
 import Otp from "../Components/Otp";
 import UpdateProfile from "../Components/UpdateProfile";
-import UpdateMobile from "../Components/Partials/updateMobile";
 import MyAds from "../Components/MyAds";
 import Confirmation from "../Components/Partials/Confirmation";
 import UpdateAvatar from "../Components/Partials/UpdateAvatar";
 import UpdatePassword from "../Components/Partials/UpdatePassword";
+import UpdateMobile from "../Components/Partials/UpdateMobile";
 
 const Routing = () => {
   return (
