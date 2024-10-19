@@ -17,20 +17,20 @@ import UpdateMobile from "../Components/Partials/UpdateMobile";
 const Routing = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />}></Route>
-      <Route path="/login" element={<Login />}></Route>
-      <Route path="/signup" element={<SignUp />}></Route>
-      <Route path="/productdetails/:id" element={<ProductDetails />}></Route>
-      <Route path="/profile/:id?" element={<UserProfile />}>
+      <Route path="https://campustrade-frontend.onrender.com/" element={<Home />}></Route>
+      <Route path="https://campustrade-frontend.onrender.com/login" element={<Login />}></Route>
+      <Route path="https://campustrade-frontend.onrender.com/signup" element={<SignUp />}></Route>
+      <Route path="https://campustrade-frontend.onrender.com/productdetails/:id" element={<ProductDetails />}></Route>
+      <Route path="https://campustrade-frontend.onrender.com/profile/:id?" element={<UserProfile />}>
         <Route path="avatar" element={<UpdateAvatar />}></Route>
         <Route path="password" element={<UpdatePassword />}></Route>
       </Route>
-      <Route path="/addproduct" element={<AddProduct />}></Route>
-      <Route path="/otp" element={<Otp />}></Route>
-      <Route path="/update-profile" element={<UpdateProfile />}>
+      <Route path="https://campustrade-frontend.onrender.com/addproduct" element={<AddProduct />}></Route>
+      <Route path="https://campustrade-frontend.onrender.com/otp" element={<Otp />}></Route>
+      <Route path="https://campustrade-frontend.onrender.com/update-profile" element={<UpdateProfile />}>
         <Route path="mobile" element={<UpdateMobile />}></Route>
       </Route>
-      <Route path="/my-ads" element={<MyAds />}>
+      <Route path="https://campustrade-frontend.onrender.com/my-ads" element={<MyAds />}>
         <Route path="confirmation" element={<Confirmation />}></Route>
       </Route>
     </Routes>
