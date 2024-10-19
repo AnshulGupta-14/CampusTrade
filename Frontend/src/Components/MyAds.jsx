@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../Utils/Axios";
 import React, { useEffect, useState } from "react";
 import { errorHandler } from "../Utils/HandleError";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ const MyAds = () => {
   const [ads, setads] = useState([]);
   const getAds = () => {
     axios
-      .get("http://localhost:8000/api/v1/products/ads", {
+      .get("/products/ads", {
         withCredentials: true,
       })
       .then((res) => {

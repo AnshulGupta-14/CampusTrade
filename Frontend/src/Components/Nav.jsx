@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { BiSolidUser } from "react-icons/bi";
 import { IoCloseSharp, IoSearchOutline } from "react-icons/io5";
 import Cookies from "js-cookie";
-import axios from "axios";
+import axios from "../Utils/Axios";
 import { jwtDecode } from "jwt-decode";
 import { errorHandler } from "../Utils/HandleError";
 
@@ -16,7 +16,7 @@ const Nav = ({ data }) => {
   const handleLogout = () => {
     axios
       .post(
-        "http://localhost:8000/api/v1/users/logout",
+        "/users/logout",
         {},
         {
           withCredentials: true,

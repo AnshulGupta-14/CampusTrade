@@ -23,7 +23,7 @@ const UserProfile = () => {
 
   const getProducts = () => {
     axios
-      .get(`http://localhost:8000/api/v1/products/get-user-products/${id}`, {
+      .get(`/products/get-user-products/${id}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -36,7 +36,7 @@ const UserProfile = () => {
 
   const getUser = () => {
     axios
-      .get(`http://localhost:8000/api/v1/users/get-current-user/${id}`, {
+      .get(`/users/get-current-user/${id}`, {
         withCredentials: true,
       })
       .then((res) => {

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../Utils/Axios";
 import React, { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { errorHandler } from "../Utils/HandleError";
@@ -10,7 +10,7 @@ const Otp = () => {
 
   const submithandler = () => {
     const data = { otp };
-    const url = "http://localhost:8000/api/v1/users/verify-otp";
+    const url = "/users/verify-otp";
 
     axios
       .post(url, data, { withCredentials: true })

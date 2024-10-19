@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../Utils/Axios";
 import React from "react";
 import {
   NavLink,
@@ -16,7 +16,7 @@ const Confirmation = () => {
 
   const removeHandler = (id) => {
     axios
-      .delete(`http://localhost:8000/api/v1/products/remove-ad/${id}`, {
+      .delete(`/products/remove-ad/${id}`, {
         withCredentials: true,
       })
       .then((res) => {

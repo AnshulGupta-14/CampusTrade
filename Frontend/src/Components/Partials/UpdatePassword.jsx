@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { errorHandler } from "../../Utils/HandleError";
-import axios from "axios";
+import axios from "../../Utils/Axios";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -14,7 +14,7 @@ const UpdatePassword = () => {
   const handleClick = () => {
     axios
       .post(
-        `http://localhost:8000/api/v1/users/update-password`,
+        `/users/update-password`,
         {
           currentPassword,
           newPassword,

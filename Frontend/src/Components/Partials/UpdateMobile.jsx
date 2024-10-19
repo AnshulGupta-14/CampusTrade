@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../Utils/Axios";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { errorHandler } from "../../Utils/HandleError";
@@ -14,7 +14,7 @@ const UpdateMobile = () => {
   const handleClick = () => {
     axios
       .put(
-        "http://localhost:8000/api/v1/users/update-mobile",
+        "/users/update-mobile",
         { mobno: phone },
         { withCredentials: true }
       )
@@ -32,7 +32,7 @@ const UpdateMobile = () => {
   const handleVerify = () => {
     axios
       .post(
-        "http://localhost:8000/api/v1/users/verify-otp",
+        "/users/verify-otp",
         {
           otp,
         },

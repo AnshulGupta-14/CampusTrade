@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { CiEdit } from "react-icons/ci";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import axios from "axios";
+import axios from "../../Utils/Axios";
 import { errorHandler } from "../../Utils/HandleError";
 
 const UpdateAvatar = () => {
@@ -25,7 +25,7 @@ const UpdateAvatar = () => {
     const data = new FormData();
     data.append("avatar", image); // Append the image blob to FormData
     axios
-      .post("http://localhost:8000/api/v1/users/update-avatar", data, {
+      .post("/users/update-avatar", data, {
         withCredentials: true,
       })
       .then((res) => {

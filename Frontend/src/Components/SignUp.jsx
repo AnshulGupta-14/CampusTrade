@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../Utils/Axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import Otp from "./Otp";
 import { errorHandler } from "../Utils/HandleError";
@@ -25,7 +25,7 @@ const SignUp = () => {
     formData.append("regno", reg);
     formData.append("fullname", name);
     formData.append("avatar", avatar);
-    const url = "http://localhost:8000/api/v1/users/register";
+    const url = "/users/register";
     axios
       .post(url, formData, { withCredentials: true })
       .then((res) => {

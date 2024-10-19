@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../Utils/Axios";
 import React, { useEffect, useState } from "react";
 import Cards from "./Partials/Cards";
 import LocomotiveScroll from "locomotive-scroll";
@@ -7,18 +7,18 @@ import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   
   const locomotiveScroll = new LocomotiveScroll();
 
   const [products, setproducts] = useState([]);
 
   useEffect(() => {
-    const url = "http://localhost:8000/api/v1/products/get-products";
+    const url = "/products/get-products";
     axios
       .get(url,{withCredentials: true})
       .then((res) => {
-        console.log(res);
+        // console.log(res);
 
         if (res.data) {
           setproducts(res.data.data);

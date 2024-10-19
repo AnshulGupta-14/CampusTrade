@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../Utils/Axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -13,7 +13,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/v1/products/product-details/${id}`, {
+      .get(`/products/product-details/${id}`, {
         withCredentials: true,
       })
       .then((response) => {

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../Utils/Axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { errorHandler } from "../Utils/HandleError";
@@ -13,7 +13,7 @@ const AddProduct = () => {
 
   const handleApi = () => {
     const formData = new FormData();
-    console.log(image);
+    // console.log(image);
 
     formData.append("title", title);
     formData.append("description", description);
@@ -24,7 +24,7 @@ const AddProduct = () => {
     });
     // console.log(formData.get("image"));
 
-    const url = "http://localhost:8000/api/v1/products/add-products";
+    const url = "/products/add-products";
     axios
       .post(url, formData, { withCredentials: true })
       .then((res) => {

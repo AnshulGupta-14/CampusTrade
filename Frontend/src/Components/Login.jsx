@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../Utils/Axios";
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { errorHandler } from "../Utils/HandleError";
@@ -12,7 +12,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const submithandler = () => {
-    const url = "http://localhost:8000/api/v1/users/login";
+    const url = "/users/login";
     const data = { regno, password };
 
     axios

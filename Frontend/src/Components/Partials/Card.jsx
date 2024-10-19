@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
-import axios from "axios";
+import axios from "../../Utils/Axios";
 import { errorHandler } from "../../Utils/HandleError";
 
 const Card = ({ data, close = false, onUpdate }) => {
@@ -20,7 +20,7 @@ const Card = ({ data, close = false, onUpdate }) => {
     }
     axios
       .post(
-        `http://localhost:8000/api/v1/products/upload-ad/${data._id}`,
+        `/products/upload-ad/${data._id}`,
         {},
         { withCredentials: true }
       )

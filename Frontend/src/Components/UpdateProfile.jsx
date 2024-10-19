@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../Utils/Axios";
 import React, { useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { errorHandler } from "../Utils/HandleError";
@@ -17,7 +17,7 @@ const UpdateProfile = () => {
   const handleClick = () => {
     axios
       .put(
-        `http://localhost:8000/api/v1/users/update-account-details`,
+        `/users/update-account-details`,
         {
           username,
           fullname: name,
