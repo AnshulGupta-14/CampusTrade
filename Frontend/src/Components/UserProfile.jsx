@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import axios from "../Utils/Axios";
 import Cards from "./Partials/Cards";
 import {
   NavLink,
