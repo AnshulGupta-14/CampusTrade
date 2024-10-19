@@ -130,8 +130,8 @@ const loginUser = asyncHandler(async (req, res) => {
   );
 
   const options = {
-    // httpOnly: true,
-    // secure: true,
+    httpOnly: true,
+    secure: true,
   };
 
   const loggedInUser = await User.findById(user._id).select(
@@ -167,8 +167,8 @@ const logoutUser = asyncHandler(async (req, res) => {
   );
 
   const options = {
-    // httpOnly: true,
-    // secure: true,
+    httpOnly: true,
+    secure: true,
   };
 
   return res
