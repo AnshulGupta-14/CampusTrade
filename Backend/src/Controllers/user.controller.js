@@ -130,7 +130,7 @@ const loginUser = asyncHandler(async (req, res) => {
   );
 
   const options = {
-    httpOnly: true,
+    // httpOnly: true,
     secure: true,
   };
 
@@ -167,7 +167,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   );
 
   const options = {
-    httpOnly: true,
+    // httpOnly: true,
     secure: true,
   };
 
@@ -232,8 +232,11 @@ const updatePassword = asyncHandler(async (req, res) => {
     throw new ApiError(400, "All fields are required");
   }
 
-  if(currentPassword === newPassword) {
-    throw new ApiError(400, "New password and current password should not be same");
+  if (currentPassword === newPassword) {
+    throw new ApiError(
+      400,
+      "New password and current password should not be same"
+    );
   }
 
   if (newPassword !== confPassword) {
@@ -295,7 +298,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
 
 const updateAvatar = asyncHandler(async (req, res) => {
   console.log(req.file);
-  
+
   const avatarLocalPath = req.file?.path;
   if (!avatarLocalPath) {
     throw new ApiError(400, "Avatar file is required");
