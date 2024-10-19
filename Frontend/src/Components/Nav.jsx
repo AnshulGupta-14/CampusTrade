@@ -9,7 +9,7 @@ import { errorHandler } from "../Utils/HandleError";
 
 const Nav = ({ data }) => {
   const accessToken = Cookies.get("accessToken");
-  console.log(accessToken);
+  console.log(Cookies);
   
   const [showOver, setshowOver] = useState(false);
 
