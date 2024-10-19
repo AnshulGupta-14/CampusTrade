@@ -132,7 +132,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const options = {
     // httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: "none", // CSRF protection
+    sameSite: "None", // CSRF protection
   };
 
   const loggedInUser = await User.findById(user._id).select(
