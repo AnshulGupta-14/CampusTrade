@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Routing from "./Utils/Routing";
 import Nav from "./Components/Nav";
-import axios from "axios";
+import axios from "./Utils/Axios";
 
 const App = () => {
   const [products, setproducts] = useState([]);
 
   useEffect(() => {
-    const url = "http://localhost:8000/api/v1/products/get-products";
+    const url = "/api/v1/products/get-products";
     axios
       .get(url)
       .then((res) => {
