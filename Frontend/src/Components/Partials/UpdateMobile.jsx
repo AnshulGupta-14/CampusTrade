@@ -27,7 +27,7 @@ const UpdateMobile = () => {
       .catch((error) => {
         errorHandler(error);
       });
-  };
+  };                                  
 
   const handleVerify = () => {
     axios
