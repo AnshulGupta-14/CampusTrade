@@ -8,7 +8,7 @@ import { jwtDecode } from "jwt-decode";
 import { errorHandler } from "../Utils/HandleError";
 
 const Nav = ({ data }) => {
-  const accessToken = Cookies.get("accessToken");
+  let accessToken; 
   console.log(accessToken);
 
   const [showOver, setshowOver] = useState(false);
