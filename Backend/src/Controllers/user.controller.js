@@ -206,6 +206,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     const options = {
       httpOnly: true,
       secure: true,
+      sameSite: "None", // CSRF protection
     };
 
     const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(
