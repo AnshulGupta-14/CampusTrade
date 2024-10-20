@@ -16,7 +16,7 @@ app.use(
     secret: "Anshul", // Change this to a strong random secret
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true }, // Set to true if using https
+    cookie: { secure: false }, // Set to true if using https
   })
 );
 
