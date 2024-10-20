@@ -7,7 +7,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://campustrade-frontend.onrender.com",
+    origin: true,
     credentials: true,
   })
 );
