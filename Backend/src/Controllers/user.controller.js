@@ -380,28 +380,6 @@ const updateCoverImage = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "Cover image updated successfully"));
 });
 
-// const sendOTP = asyncHandler(async (req, res) => {
-//   const { mobno } = req.body;
-//   // console.log(phoneNumber);
-
-//   const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
-
-//   const user = await User.findOne({ mobno });
-
-//   if (!user) {
-//     throw new ApiError(404, "User not found");
-//   }
-
-//   user.otp = otpCode;
-//   user.otpexpire = Date.now() + 5 * 60 * 1000; // OTP valid for 5 minutes
-//   await user.save();
-
-//   sendOTPFromTwilio(otpCode, mobno);
-//   return res
-//     .status(200)
-//     .json(new ApiResponse(200, user, "OTP sent successfully"));
-// });
-
 const updateMobileNumber = asyncHandler(async (req, res) => {
   const { mobno } = req.body;
   if (!mobno) {
