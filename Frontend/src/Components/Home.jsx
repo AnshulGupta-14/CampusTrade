@@ -18,7 +18,7 @@ const Home = () => {
     axios
       .get(url, { withCredentials: true })
       .then((res) => {
-        // console.log(res);
+        console.log(res);
 
         if (res.data) {
           setproducts(res.data.data);
