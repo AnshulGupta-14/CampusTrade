@@ -131,8 +131,8 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const options = {
     // httpOnly: true,
-    // secure: true,
-    // sameSite: "None", // CSRF protection
+    secure: true,
+    sameSite: "None", // CSRF protection
   };
 
   const loggedInUser = await User.findById(user._id).select(
@@ -169,8 +169,8 @@ const logoutUser = asyncHandler(async (req, res) => {
 
   const options = {
     // httpOnly: true,
-    // secure: true,
-    // sameSite: "None", // CSRF protection
+    secure: true,
+    sameSite: "None", // CSRF protection
   };
 
   return res
