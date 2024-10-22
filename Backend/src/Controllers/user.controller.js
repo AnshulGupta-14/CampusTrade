@@ -136,6 +136,7 @@ const loginUser = asyncHandler(async (req, res) => {
     httpOnly: false,
     secure: true,
     sameSite: "None", // CSRF protection
+    path: "/",
   };
 
   const loggedInUser = await User.findById(user._id).select(
