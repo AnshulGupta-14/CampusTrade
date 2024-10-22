@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { errorHandler } from "../Utils/HandleError";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Cookies from 'js-cookie'
 
 const Login = () => {
   const navigate = useNavigate();
