@@ -133,7 +133,7 @@ const loginUser = asyncHandler(async (req, res) => {
   );
 
   const options = {
-    // httpOnly: true,
+    httpOnly: false,
     secure: true,
     sameSite: "None", // CSRF protection
   };
@@ -171,7 +171,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   );
 
   const options = {
-    // httpOnly: true,
+    httpOnly: false,
     secure: true,
     sameSite: "None", // CSRF protection
   };
@@ -207,7 +207,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     }
 
     const options = {
-      // httpOnly: true,
+      httpOnly: false,
       secure: true,
       sameSite: "None", // CSRF protection
     };
