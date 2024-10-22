@@ -21,6 +21,8 @@ const Login = () => {
         // console.log(res);
 
         alert(res.data.message);
+        const accessToken = Cookies.get("accessToken");
+        console.log("Access Token:", accessToken);
         navigate(-1);
       })
       .catch((err) => {
