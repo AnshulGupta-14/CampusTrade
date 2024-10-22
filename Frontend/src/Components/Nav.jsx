@@ -9,6 +9,8 @@ import { errorHandler } from "../Utils/HandleError";
 
 const Nav = ({ data }) => {
   const accessToken = Cookies.get("accessToken");
+  console.log(accessToken);
+  
   const user = accessToken ? jwtDecode(accessToken).fullname : null;
   // console.log(user);
 
