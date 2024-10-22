@@ -19,13 +19,12 @@ const Login = () => {
       .post(url, data, { withCredentials: true })
       .then((res) => {
         // console.log(res);
-        
-        alert("You have been logged in successfully");
+
+        alert(res.data.message);
         navigate(-1);
       })
       .catch((err) => {
         errorHandler(err);
-        navigate("/login");
       });
   };
 

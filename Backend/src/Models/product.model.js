@@ -35,6 +35,12 @@ const productSchema = new Schema(
       required: true,
       index: true,
     },
+    likedBy: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   { timestamps: true }
 );

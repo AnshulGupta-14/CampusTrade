@@ -9,6 +9,7 @@ import {
 } from "../Utils/cloudinary.js";
 import jwt from "jsonwebtoken";
 import { sendOTPFromTwilio } from "../Utils/twilio.js";
+import { Product } from "../Models/product.model.js";
 
 const generateAccessAndRefereshTokens = async (user) => {
   try {
@@ -96,7 +97,9 @@ const registerUser = asyncHandler(async (req, res) => {
     avatar,
     coverImage,
   };
-  res.status(200).json(new ApiResponse(200, null, "OTP sent successfully"));
+  return res
+    .status(200)
+    .json(new ApiResponse(200, null, "OTP sent successfully"));
 });
 
 const loginUser = asyncHandler(async (req, res) => {
@@ -132,7 +135,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const options = {
     // httpOnly: true,
     secure: true,
-    sameSite: "None", // CSRF protection
+    // sameSite: "None", // CSRF protection
   };
 
   const loggedInUser = await User.findById(user._id).select(
@@ -170,7 +173,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   const options = {
     // httpOnly: true,
     secure: true,
-    sameSite: "None", // CSRF protection
+    // sameSite: "None", // CSRF protection
   };
 
   return res
@@ -206,7 +209,6 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     const options = {
       httpOnly: true,
       secure: true,
-      sameSite: "None", // CSRF protection
     };
 
     const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(
@@ -397,7 +399,9 @@ const updateMobileNumber = asyncHandler(async (req, res) => {
   req.session.otpCode = otpCode;
   req.session.mobno = mobno;
 
-  res.status(200).json(new ApiResponse(200, null, "OTP sent successfully"));
+  return res
+    .status(200)
+    .json(new ApiResponse(200, null, "OTP sent successfully"));
 });
 
 const verifyOTP = asyncHandler(async (req, res) => {
@@ -435,7 +439,7 @@ const verifyOTP = asyncHandler(async (req, res) => {
         coverImage: coverImage?.url || "",
       });
 
-      res
+      return res
         .status(201)
         .json(new ApiResponse(201, user, "User registered successfully"));
     } else {
@@ -458,6 +462,82 @@ const verifyOTP = asyncHandler(async (req, res) => {
   }
 });
 
+const likedProducts = asyncHandler(async (req, res) => {
+  const user = req.user;
+  const productId = req.body.id;
+  if (!user) {
+    throw new ApiError(401, "User not authenticated");
+  }
+  if (!productId) {
+    throw new ApiError(400, "Product is required");
+  }
+  console.log(productId);
+
+  const product = await Product.findOne({ _id: new ObjectId(productId) });
+  console.log(product);
+  // console.log(user.likedProducts, productId);
+
+  // console.log(user);
+  if (
+    user.likedProducts.length > 0 &&
+    user.likedProducts.findIndex((id) => id.equals(productId)) > -1
+  ) {
+    user.likedProducts = user.likedProducts.filter(
+      (id) => !id.equals(productId)
+    );
+    user.save();
+
+    product.likedBy = product.likedBy.filter((id) => !id.equals(user._id));
+    product.save();
+    return res
+      .status(200)
+      .json(
+        new ApiResponse(
+          200,
+          { user, product },
+          "Product removed from favourite"
+        )
+      );
+  }
+  user.likedProducts.push(productId);
+  user.save();
+
+  if (!product) {
+    throw new ApiError(404, "Product not found");
+  }
+
+  product.likedBy.push(user._id);
+  product.save();
+  return res
+    .status(200)
+    .json(new ApiResponse(200, { user, product }, "Product add to favourite"));
+});
+
+const favourite = asyncHandler(async (req, res) => {
+  const token = req.cookies.accessToken;
+  if (!token) {
+    throw new ApiError(401, "User not authenticated");
+  }
+
+  const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+  const user = await User.findById(decodedToken._id);
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
+
+  if (!user.likedProducts || user.likedProducts.length === 0) {
+    return res
+      .status(200)
+      .json(new ApiResponse(200, [], "No favorite products found"));
+  }
+
+  const products = await Product.find({ _id: { $in: user.likedProducts } });
+  console.log(products);
+  return res
+    .status(200)
+    .json(new ApiResponse(200, products, "Fetched favourite products"));
+});
+
 export {
   registerUser,
   loginUser,
@@ -470,4 +550,6 @@ export {
   updateCoverImage,
   verifyOTP,
   updateMobileNumber,
+  likedProducts,
+  favourite,
 };

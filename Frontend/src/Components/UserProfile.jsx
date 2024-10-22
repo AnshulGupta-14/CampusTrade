@@ -23,7 +23,7 @@ const UserProfile = () => {
 
   const getProducts = () => {
     axios
-      .get(`/products/get-user-products/${id}`, {
+      .get(`/products/get-products/${id}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -80,21 +80,12 @@ const UserProfile = () => {
     <>
       <div className="pt-[6%] flex relative">
         <div className="w-[20%] p-5">
-          {id === userId ? (
-            <NavLink to="avatar" className="relative">
-              <img
-                src={user.avatar}
-                alt=""
-                className="h-24 w-24 rounded-full mx-auto"
-              />
-            </NavLink>
-          ) : (
-            <img
-              src={user.avatar}
-              alt=""
-              className="h-24 w-24 rounded-full mx-auto"
-            />
-          )}
+          <img
+            src={user.avatar}
+            alt=""
+            className="h-24 w-24 rounded-full mx-auto"
+          />
+
           <div className="pt-5 text-xl font-bold flex flex-col items-center">
             <h2>{user.username}</h2>
             <h2>{user.fullname}</h2>
@@ -131,7 +122,7 @@ const UserProfile = () => {
           </div>
         ) : (
           <div className="w-[75%] h-[87vh] p-5 flex flex-col items-center justify-center">
-            <img src="/Products.png" alt="" className="w-1/4" />
+            <img src="/Empty.png" alt="" className="w-1/4" />
             <h1 className="text-xl font-bold mt-7">
               You haven't listed anything yet
             </h1>

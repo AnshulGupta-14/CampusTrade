@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import axios from "../../Utils/Axios";
 import { errorHandler } from "../../Utils/HandleError";
+import "remixicon/fonts/remixicon.css";
+import Cookie from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 const Card = ({ data, close = false, onUpdate }) => {
-  // console.log(close);
+  const accessToken = Cookie.get("accessToken");
+  const userId = accessToken ? jwtDecode(accessToken)._id : null;
+  const [style, setstyle] = useState(data.likedBy.includes(userId));
+  const [likedBy, setLikedBy] = useState(data.likedBy);
+  const [isHovered, setIsHovered] = useState(false);
+
   const handleClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -19,11 +27,7 @@ const Card = ({ data, close = false, onUpdate }) => {
       return;
     }
     axios
-      .post(
-        `/products/upload-ad/${data._id}`,
-        {},
-        { withCredentials: true }
-      )
+      .post(`/products/upload-ad/${data._id}`, {}, { withCredentials: true })
       .then((res) => {
         console.log(res);
         alert("Product removed successfully");
@@ -34,13 +38,44 @@ const Card = ({ data, close = false, onUpdate }) => {
       });
   };
 
+  const handleLike = (e) => {
+    e.preventDefault();
+    axios
+      .post("/users/liked-product", { id: data._id })
+      .then((res) => {
+        // console.log(res);
+        setLikedBy(res.data.data.product.likedBy);
+        alert(res.data.message);
+        setstyle(res.data.message === "Product add to favourite");
+      })
+      .catch((err) => {
+        errorHandler(err);
+      });
+  };
+
+  useEffect(() => {
+    if (accessToken) {
+      try {
+        setstyle(likedBy.includes(userId));
+      } catch (error) {
+        console.error("Failed to decode token:", error);
+        setstyle(false); // Reset style if token decoding fails
+      }
+    }
+    if (onUpdate) onUpdate();
+  }, [likedBy]);
+
+  // console.log(likedBy);
+
   return (
     <NavLink
       to={`/productdetails/${data._id}`}
-      className="w-[22vw] h-[40vh] data={data} relative"
+      className="w-[22vw] h-[40vh] relative"
+      onMouseOver={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {close && (
-        <div className="relative group">
+      {close ? (
+        <div className="relative group z-10">
           <div className="absolute right-0 text-xl bg-red-500 rounded-full p-1 text-white">
             <IoMdClose onClick={handleClick} />
           </div>
@@ -48,14 +83,33 @@ const Card = ({ data, close = false, onUpdate }) => {
             Remove Element
           </h1>
         </div>
+      ) : (
+        accessToken && (
+          <i
+            onClick={handleLike}
+            className={`ri-heart-3-fill ${
+              style ? "text-red-500" : "text-white"
+            } absolute z-10 right-0 text-3xl`}
+          ></i>
+        )
       )}
-      <div className="w-full h-[70%]">
-        <img src={data.image[0]} alt="" className="w-full h-full" />
+      <div className="w-full h-[70%] relative">
+        <img
+          src={data.image[0]}
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="h-full w-full absolute inset-0 bg-black opacity-30" />
       </div>
       <div className="w-full h-[30%] bg-zinc-300 flex flex-col justify-center items-start px-5">
         <h1 className="text-xl font-bold">&#8377;{data.price}</h1>
         <p className="text-gray-600">{data.title}</p>
       </div>
+      <div
+        className={`absolute inset-0 transition-opacity duration-300 ${
+          isHovered ? "bg-black opacity-40" : "opacity-0"
+        }`}
+      />
     </NavLink>
   );
 };

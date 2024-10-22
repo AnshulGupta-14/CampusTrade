@@ -10,9 +10,9 @@ import Otp from "../Components/Otp";
 import UpdateProfile from "../Components/UpdateProfile";
 import MyAds from "../Components/MyAds";
 import Confirmation from "../Components/Partials/Confirmation";
-import UpdateAvatar from "../Components/Partials/UpdateAvatar";
 import UpdatePassword from "../Components/Partials/UpdatePassword";
 import UpdateMobile from "../Components/Partials/UpdateMobile";
+import Favourites from "../Components/Favourites";
 
 const Routing = () => {
   return (
@@ -22,7 +22,6 @@ const Routing = () => {
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/productdetails/:id" element={<ProductDetails />}></Route>
       <Route path="/profile/:id?" element={<UserProfile />}>
-        <Route path="avatar" element={<UpdateAvatar />}></Route>
         <Route path="password" element={<UpdatePassword />}></Route>
       </Route>
       <Route path="/addproduct" element={<AddProduct />}></Route>
@@ -33,6 +32,7 @@ const Routing = () => {
       <Route path="/my-ads" element={<MyAds />}>
         <Route path="confirmation" element={<Confirmation />}></Route>
       </Route>
+      <Route path="/favourites" element={<Favourites />}></Route>
     </Routes>
   );
 };

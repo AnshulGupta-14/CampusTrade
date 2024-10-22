@@ -25,7 +25,10 @@ const ProductDetails = () => {
       .catch((error) => {
         errorHandler(error);
       });
-  }, []);
+  }, [id]);
+
+  // console.log(product);
+  
 
   const handleNext = () => {
     setcuridx((prevIndex) =>
@@ -38,8 +41,6 @@ const ProductDetails = () => {
       prevIndex === 0 ? product.image.length - 1 : prevIndex - 1
     );
   };
-
-  console.log(user);
 
   return (
     <div className="w-full flex ites-center mt-[6%] px-5">
@@ -75,6 +76,7 @@ const ProductDetails = () => {
             {product.image &&
               product.image.map((item, idx) => (
                 <img
+                  key={idx}
                   src={item}
                   alt=""
                   className={`h-full w-[10%] rounded-lg ${

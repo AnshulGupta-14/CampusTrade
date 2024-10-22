@@ -60,29 +60,6 @@ const addProducts = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, product, "Product added successfully"));
 });
 
-const getUserProducts = asyncHandler(async (req, res) => {
-  console.log(req.params);
-  const userId = req.params.id;
-  const _id = new ObjectId(userId);
-
-  const user = await User.findOne({ _id });
-
-  const productIds = user.products;
-
-  if (productIds.length === 0) {
-    return res.status(200).json(new ApiResponse(200, [], "No products found"));
-  }
-
-  let products = productIds.map(async (_id) => await Product.findOne({ _id }));
-  products = await Promise.all(products);
-  products.reverse();
-  // console.log(products);
-
-  res
-    .status(200)
-    .json(new ApiResponse(200, products, "Products fetched successfully"));
-});
-
 const uploadAd = asyncHandler(async (req, res) => {
   const productId = req.params;
   const products = req.user.products;
@@ -137,7 +114,32 @@ const removeAd = asyncHandler(async (req, res) => {
 });
 
 const getProducts = asyncHandler(async (req, res) => {
-  // console.log(users);
+  const userId = req.params?.id;
+
+  if (userId) {
+    const _id = new ObjectId(userId);
+    const user = await User.findOne({ _id });
+    if (!user) {
+      throw new ApiError(404, "User not found");
+    }
+    const productIds = user.products;
+    if (productIds.length === 0) {
+      return res
+        .status(200)
+        .json(new ApiResponse(200, [], "No products found"));
+    }
+
+    let products = productIds.map(
+      async (_id) => await Product.findOne({ _id })
+    );
+    products = await Promise.all(products);
+    products.reverse();
+    res
+      .status(200)
+      .json(new ApiResponse(200, products, "Fetch products successfully"));
+    return;
+  }
+
   const token = req.cookies?.accessToken;
   let currentUserId = null;
   if (token) {
@@ -186,7 +188,6 @@ const getProductDetails = asyncHandler(async (req, res) => {
 
 export {
   addProducts,
-  getUserProducts,
   uploadAd,
   getProducts,
   getProductDetails,

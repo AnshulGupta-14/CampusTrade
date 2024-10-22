@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { BiSolidUser } from "react-icons/bi";
 import { IoCloseSharp, IoSearchOutline } from "react-icons/io5";
@@ -9,13 +9,14 @@ import { errorHandler } from "../Utils/HandleError";
 
 const Nav = ({ data }) => {
   const accessToken = Cookies.get("accessToken");
-  console.log(accessToken);
+  const user = accessToken ? jwtDecode(accessToken).fullname : null;
+  // console.log(user);
 
   const [showOver, setshowOver] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     axios
       .post(
         "/users/logout",
@@ -33,7 +34,7 @@ const Nav = ({ data }) => {
       });
     setshowOver(false);
     navigate("/");
-  };
+  }, []);
 
   const [search, setsearch] = useState("");
 
@@ -41,6 +42,7 @@ const Nav = ({ data }) => {
     return product.title.toLowerCase().includes(search.toLowerCase());
     // product.author.toLowerCase().includes(search.toLowerCase())
   });
+  // console.log(data);
 
   return (
     <div className="fixed left-0 top-0 w-full z-50">
@@ -64,18 +66,19 @@ const Nav = ({ data }) => {
               <IoCloseSharp />
             </button>
           )}
-          <div className="absolute w-[80%] max-h-[50vh] bg-zinc-200 text-black text-xl top-[100%] left-[5%] overflow-auto">
+          <div className="absolute w-[80%] max-h-[50vh] bg-zinc-200 text-black text-xl top-[100%] left-[10%] overflow-auto">
             {products && products.length > 0 && search
               ? products.map((s, i) => {
                   return (
                     <Link
-                      to={`/${s.media_type}/details/${s.id}`}
+                      onClick={() => setsearch("")}
+                      to={`/productdetails/${s._id}`}
                       key={i}
-                      className="p-5 w-full bg-zinc-300 p-8 hover:bg-zinc-400 hover:font-semibold border-b-2 border-white duration-300 flex items-center justify-start"
+                      className="p-5 w-full bg-zinc-400 p-8 hover:bg-zinc-300 hover:font-semibold border-b-2 border-white duration-300 flex items-center justify-start"
                     >
                       <img
                         className="w-[5vw] h-[10vh] object-cover object-center rounded-full mr-10 shadow-xl bg-black"
-                        src=""
+                        src={s.image[0]}
                         alt=""
                       />
                       <div>
@@ -118,24 +121,17 @@ const Nav = ({ data }) => {
               onMouseEnter={() => {
                 setshowOver(true);
               }}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                background: "#002f34",
-                width: "40px",
-                height: "40px",
-                color: "#fff",
-                fontSize: "14px",
-                borderRadius: "50%",
-              }}
+              className="flex items-center justify-center shadow-inner bg-[#002f34] h-10 w-10 rounded-full text-white"
             >
-              {" "}
-              <BiSolidUser className="text-2xl"></BiSolidUser>{" "}
+              {user ? (
+                <h1 className="text-2xl font-bold">{user[0].toUpperCase()}</h1>
+              ) : (
+                <BiSolidUser className="text-2xl"></BiSolidUser>
+              )}
             </div>
 
             {showOver && (
-              <div className="absolute top-10 bg-white p-3">
+              <div className="absolute top-10 bg-white p-3 z-20">
                 {Cookies.get("accessToken") && (
                   <div className="p-2 flex flex-col gap-2">
                     <Link
@@ -152,7 +148,7 @@ const Nav = ({ data }) => {
                     </Link>
                     <Link
                       className="p-2 rounded-lg bg-blue-500"
-                      to="/liked-products"
+                      to="/favourites"
                     >
                       FAVOURITES{" "}
                     </Link>

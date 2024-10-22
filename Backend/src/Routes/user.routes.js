@@ -1,7 +1,9 @@
 import { Router } from "express";
 import { upload } from "../Middlewares/multer.middleware.js";
 import {
+  favourite,
   getCurrentUser,
+  likedProducts,
   loginUser,
   logoutUser,
   refreshAccessToken,
@@ -41,5 +43,7 @@ router
   .post(upload.single("avatar"), verifyJWT, updateAvatar);
 router.route("/verify-otp").post(verifyOTP);
 router.route("/update-mobile").put(updateMobileNumber);
+router.route("/liked-product").post(verifyJWT, likedProducts);
+router.route("/favourite-products").get(favourite);
 
 export default router;
