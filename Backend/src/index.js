@@ -10,7 +10,7 @@ connectDB()
   .then(() => {
     const PORT = process.env.PORT || 8000;
     app.listen(PORT, () => {
-      console.log(`Server listening on ${process.env.PORT}`);
+      console.log(`Server listening on ${process.env.PORT}/${process.env.DB_NAME}`);
     });
   })
   .catch((err) => {
