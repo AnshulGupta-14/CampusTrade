@@ -9,9 +9,11 @@ const AuthProvider = (props) => {
   });
   const updateAccessToken = (token) => {
     setAccessToken(token);
-    // if (token) {
-    //   Cookies.set("accessToken", token); // Save token to local storage
-    // }
+    if (token) {
+      Cookies.set("accessToken", token);
+    }else{
+      Cookies.remove("accessToken");
+    }
   };
 
   useEffect(() => {
