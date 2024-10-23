@@ -50,11 +50,22 @@ const Nav = ({ data }) => {
 
   return (
     <div className="fixed left-0 top-0 w-full z-50">
-      <div className="w-full h-[10vh] p-2 bg-zinc-300 px-10 flex items-center">
-        <div>
-          <img src="/Logo1.png" alt="" />
+      <div className="w-full h-[12vh] p-2 bg-zinc-300 px-10 flex items-center">
+        <div className="w-[10%] h-full flex items-center">
+          <img src="Logo1.png" alt="" className="w-[40%] h-[70%]" />
+          <circular-text
+            text="Your Campus,Your Marketplace "
+            radius="40"
+            style={{
+              fontSize: "10px",
+              color: "#000",
+              position: "absolute",
+              left: "24px",
+              transform: "rotate(-60deg)",
+            }}
+          ></circular-text>
         </div>
-        <div className="relative p-1 h-full w-[50%] mx-auto flex justify-between">
+        <div className="relative p-1 h-[80%] w-[60%] mx-auto flex justify-between">
           <button className="p-3 mr-2 flex items-center bg-[#003034] text-white text-2xl rounded-lg">
             <IoSearchOutline />
           </button>
