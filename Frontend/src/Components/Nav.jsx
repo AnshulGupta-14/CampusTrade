@@ -13,7 +13,7 @@ const Nav = ({ data }) => {
   // console.log(Cookies.get());
   const {accessToken} = useContext(AuthContext)
   
-  const user = accessToken ? jwtDecode(accessToken).fullname : null;
+  const user = accessToken ? jwtDecode(accessToken) : null;
   // console.log(user);
 
   const [showOver, setshowOver] = useState(false);
@@ -128,7 +128,7 @@ const Nav = ({ data }) => {
               className="flex items-center justify-center shadow-inner bg-[#002f34] h-10 w-10 rounded-full text-white"
             >
               {user ? (
-                <h1 className="text-2xl font-bold">{user[0].toUpperCase()}</h1>
+                <h1 className="text-2xl font-bold">{user.fullname[0].toUpperCase()}</h1>
               ) : (
                 <BiSolidUser className="text-2xl"></BiSolidUser>
               )}
@@ -136,11 +136,11 @@ const Nav = ({ data }) => {
 
             {showOver && (
               <div className="absolute top-10 bg-white p-3 z-20">
-                {Cookies.get("accessToken") && (
+                {accessToken && (
                   <div className="p-2 flex flex-col gap-2">
                     <Link
                       className="p-2 rounded-lg bg-blue-500"
-                      to={`/profile/${jwtDecode(accessToken)._id}`}
+                      to={`/profile/${user._id}`}
                     >
                       MY PROFILE{" "}
                     </Link>
