@@ -2,7 +2,6 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { BiSolidUser } from "react-icons/bi";
 import { IoCloseSharp, IoSearchOutline } from "react-icons/io5";
-import Cookies from "js-cookie";
 import axios from "../Utils/Axios";
 import { jwtDecode } from "jwt-decode";
 import { errorHandler } from "../Utils/HandleError";
@@ -52,6 +51,9 @@ const Nav = ({ data }) => {
   return (
     <div className="fixed left-0 top-0 w-full z-50">
       <div className="w-full h-[10vh] p-2 bg-zinc-300 px-10 flex items-center">
+        <div>
+          <img src="/Logo1.png" alt="" />
+        </div>
         <div className="relative p-1 h-full w-[50%] mx-auto flex justify-between">
           <button className="p-3 mr-2 flex items-center bg-[#003034] text-white text-2xl rounded-lg">
             <IoSearchOutline />
