@@ -4,11 +4,12 @@ import { IoMdClose } from "react-icons/io";
 import axios from "../../Utils/Axios";
 import { errorHandler } from "../../Utils/HandleError";
 import "remixicon/fonts/remixicon.css";
-import Cookie from "js-cookie";
+// import Cookie from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
 const Card = ({ data, close = false, onUpdate }) => {
-  const accessToken = Cookie.get("accessToken");
+  // const accessToken = Cookie.get("accessToken");
+  const { accessToken } = useContext(AuthContext);
   const userId = accessToken ? jwtDecode(accessToken)._id : null;
   const [style, setstyle] = useState(data.likedBy.includes(userId));
   const [likedBy, setLikedBy] = useState(data.likedBy);
