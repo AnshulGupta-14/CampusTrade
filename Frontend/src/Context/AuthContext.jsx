@@ -27,7 +27,7 @@ const AuthProvider = (props) => {
 
   return (
     <AuthContext.Provider
-      value={{ accessToken, setAccessToken, updateAccessToken }}
+      value={{ accessToken, setAccessToken }}
     >
       {props.children}
     </AuthContext.Provider>
