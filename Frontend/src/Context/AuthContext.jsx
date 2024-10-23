@@ -5,6 +5,8 @@ export const AuthContext = createContext();
 
 const AuthProvider = (props) => {
   const [accessToken, setAccessToken] = useState(Cookies.get("accessToken"));
+  console.log(accessToken);
+  
   return (
     <AuthContext.Provider value={{ accessToken, setAccessToken }}>
       {props.children}
