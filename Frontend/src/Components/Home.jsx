@@ -4,7 +4,7 @@ import Cards from "./Partials/Cards";
 import LocomotiveScroll from "locomotive-scroll";
 import { errorHandler } from "../Utils/HandleError";
 import { useLocation } from "react-router-dom";
-import { ProductContext } from "../Context/Context";
+// import { ProductContext } from "../Context/Context";
 
 const Home = () => {
   const location = useLocation();
