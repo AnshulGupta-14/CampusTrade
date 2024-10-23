@@ -6,6 +6,7 @@ import axios from "../Utils/Axios";
 import { jwtDecode } from "jwt-decode";
 import { errorHandler } from "../Utils/HandleError";
 import { AuthContext } from "../Context/AuthContext";
+import "@webpunk/circular-text";
 
 const Nav = ({ data }) => {
   // const accessToken = Cookies.get("accessToken");
