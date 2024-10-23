@@ -11,7 +11,7 @@ import { AuthContext } from "../Context/AuthContext";
 const Nav = ({ data }) => {
   // const accessToken = Cookies.get("accessToken");
   // console.log(Cookies.get());
-  const { accessToken } = useContext(AuthContext);
+  const { accessToken, updateAccessToken } = useContext(AuthContext);
 
   const user = accessToken ? jwtDecode(accessToken) : null;
   // console.log(user);
@@ -31,6 +31,7 @@ const Nav = ({ data }) => {
       )
       .then(() => {
         alert("You have been logged out");
+        updateAccessToken(null);
         navigate("/");
       })
       .catch((error) => {
