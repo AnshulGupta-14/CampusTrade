@@ -7,14 +7,12 @@ const AuthProvider = (props) => {
   const [accessToken, setAccessToken] = useState(() => {
     return Cookies.get("accessToken") || null;
   });
-  // const updateAccessToken = (token) => {
-  //   setAccessToken(token);
-  //   if (token) {
-  //     localStorage.setItem("accessToken", token); // Save token to local storage
-  //   } else {
-  //     localStorage.removeItem("accessToken"); // Remove token
-  //   }
-  // };
+  const updateAccessToken = (token) => {
+    setAccessToken(token);
+    if (token) {
+      Cookies.set("accessToken", token); // Save token to local storage
+    }
+  };
 
   useEffect(() => {
     const token = Cookies.get("accessToken");
@@ -27,7 +25,7 @@ const AuthProvider = (props) => {
 
   return (
     <AuthContext.Provider
-      value={{ accessToken, setAccessToken }}
+      value={{ accessToken, setAccessToken, updateAccessToken }}
     >
       {props.children}
     </AuthContext.Provider>

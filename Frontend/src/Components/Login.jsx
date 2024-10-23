@@ -8,7 +8,7 @@ import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const {accessToken, setAccessToken} = useContext(AuthContext)
+  const { updateAccessToken } = useContext(AuthContext);
 
   const [regno, setregno] = useState("");
   const [password, setpassword] = useState("");
@@ -23,7 +23,7 @@ const Login = () => {
       .then((res) => {
         // console.log(res);
         alert(res.data.message);
-        setAccessToken(res.data.data.accessToken);
+        updateAccessToken(res.data.data.accessToken);
         navigate(-1);
       })
       .catch((err) => {
