@@ -18,6 +18,8 @@ const AuthProvider = (props) => {
     const token = Cookies.get("accessToken");
     if (token) {
       setAccessToken(token); // Update state if token exists
+    } else{
+      Cookies.remove("accessToken"); // Remove token if it doesn't exist anymore
     }
   }, []);
 
