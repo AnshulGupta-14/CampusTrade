@@ -1,12 +1,14 @@
 import axios from "../Utils/Axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { errorHandler } from "../Utils/HandleError";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
+import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
+  const {accessToken, setAccessToken} = useContext(AuthContext)
 
   const [regno, setregno] = useState("");
   const [password, setpassword] = useState("");
@@ -20,10 +22,8 @@ const Login = () => {
       .post(url, data, { withCredentials: true })
       .then((res) => {
         // console.log(res);
-
         alert(res.data.message);
-        const accessToken = Cookies.get("accessToken");
-        console.log("Access Token:", accessToken);
+        setAccessToken(res.data.data.accessToken);
         navigate(-1);
       })
       .catch((err) => {

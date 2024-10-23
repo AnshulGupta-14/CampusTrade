@@ -128,12 +128,10 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new ApiError(401, "Invalid password");
   }
 
-  const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(
-    user
-  );
+  const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(user);
 
   const options = {
-    httpOnly: false,
+    httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "None", // CSRF protection
     path: "/",
@@ -172,7 +170,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   );
 
   const options = {
-    httpOnly: false,
+    httpOnly: true,
     secure: true,
     sameSite: "None", // CSRF protection
   };
@@ -208,7 +206,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     }
 
     const options = {
-      httpOnly: false,
+      httpOnly: true,
       secure: true,
       sameSite: "None", // CSRF protection
     };

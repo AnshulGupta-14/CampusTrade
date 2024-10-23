@@ -4,7 +4,7 @@ import { errorHandler } from "../Utils/HandleError";
 
 export const ProductContext = createContext();
 
-const Context = (props) => {
+const ProductProvider = (props) => {
   const [products, setproducts] = useState([]);
 
   useEffect(() => {
@@ -22,10 +22,10 @@ const Context = (props) => {
   
 
   return (
-    <ProductContext.Provider value={[products, setproducts]}>
+    <ProductContext.Provider value={{products, setproducts}}>
       {props.children}
     </ProductContext.Provider>
   );
 };
 
-export default Context;
+export default ProductProvider;

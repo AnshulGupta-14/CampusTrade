@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { BiSolidUser } from "react-icons/bi";
 import { IoCloseSharp, IoSearchOutline } from "react-icons/io5";
@@ -8,8 +8,9 @@ import { jwtDecode } from "jwt-decode";
 import { errorHandler } from "../Utils/HandleError";
 
 const Nav = ({ data }) => {
-  const accessToken = Cookies.get("accessToken");
-  console.log(Cookies.get());
+  // const accessToken = Cookies.get("accessToken");
+  // console.log(Cookies.get());
+  const {accessToken} = useContext(AuthContext)
   
   const user = accessToken ? jwtDecode(accessToken).fullname : null;
   // console.log(user);
