@@ -7,6 +7,7 @@ import { jwtDecode } from "jwt-decode";
 import { errorHandler } from "../Utils/HandleError";
 import { AuthContext } from "../Context/AuthContext";
 import "@webpunk/circular-text";
+import useMediaQuery from 'react-responsive'
 
 const Nav = ({ data }) => {
   const isDesktop = useMediaQuery({ minWidth: 1224 });
