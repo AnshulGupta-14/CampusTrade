@@ -1,5 +1,5 @@
 import axios from "../../Utils/Axios";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { errorHandler } from "../../Utils/HandleError";
 import { useMediaQuery } from "react-responsive";
@@ -7,6 +7,7 @@ import { useMediaQuery } from "react-responsive";
 const UpdateMobile = () => {
   const isDesktop = useMediaQuery({ minWidth: 1224 });
   const navigate = useNavigate();
+  const inputRef = useRef(null);
   const location = useLocation();
   const mobile = location.state;
   const [phone, setphone] = useState(mobile);
@@ -45,6 +46,13 @@ const UpdateMobile = () => {
         errorHandler(err);
       });
   };
+
+  useEffect(() => {
+    // Focus the input field whenever the component renders
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  });
 
   return (
     <>
@@ -104,7 +112,7 @@ const UpdateMobile = () => {
           </h1>
           <input
             type="text"
-            autoFocus
+            ref={inputRef}
             placeholder="Enter your phone number"
             className="w-full mt-10 p-3 rounded-md border-2 border-gray-300 focus:outline-none focus:border-zinc-500"
             value={phone}
