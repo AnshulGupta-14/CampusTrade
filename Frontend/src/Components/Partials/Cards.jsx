@@ -20,7 +20,7 @@ const Cards = React.memo(({ data, close, onUpdate }) => {
       )}
 
       {!isDesktop && (
-        <div className="w-full flex flex-wrap items-center gap-5 pt-10 px-2.5">
+        <div className="w-full flex flex-wrap items-center gap-5 pt-10 px-[2.5%]">
           {data.map((item) => (
             <Card
               key={item._id}

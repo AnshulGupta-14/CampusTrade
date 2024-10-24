@@ -11,8 +11,10 @@ import {
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import { errorHandler } from "../Utils/HandleError";
+import { useMediaQuery } from "react-responsive";
 
 const UserProfile = () => {
+  const isDesktop = useMediaQuery({ minWidth: 1224 });
   const location = useLocation();
   const id = useParams()?.id;
   const navigate = useNavigate();
@@ -78,66 +80,133 @@ const UserProfile = () => {
 
   return (
     <>
-      <div className="pt-[6%] flex relative">
-        <div className="w-[20%] p-5">
-          <img
-            src={user.avatar}
-            alt=""
-            className="h-24 w-24 rounded-full mx-auto"
-          />
+      {isDesktop && (
+        <div className="pt-[6%] flex relative">
+          <div className="w-[20%] p-5">
+            <img
+              src={user.avatar}
+              alt=""
+              className="h-24 w-24 rounded-full mx-auto"
+            />
 
-          <div className="pt-5 text-xl font-bold flex flex-col items-center">
-            <h2>{user.username}</h2>
-            <h2>{user.fullname}</h2>
-            <h2>{user.regno}</h2>
-            <h6 className="text-xs font-medium text-zinc-600 mt-1">
-              Member Since: {arr && arr[2]}-{arr && arr[1]}-{arr && arr[0]}
-            </h6>
-            {id === userId && (
-              <>
-                <button
-                  className="text-sm font-medium mt-7 p-3 bg-[#002f34] text-white rounded-xl"
-                  onClick={editProfile}
-                >
-                  Edit Profile
-                </button>
-                <button
-                  className="text-sm font-medium mt-3 p-3 bg-[#002f34] text-white rounded-xl"
-                  onClick={changePassword}
-                >
-                  Change Password
-                </button>
-              </>
-            )}
+            <div className="pt-5 text-xl font-bold flex flex-col items-center">
+              <h2>{user.username}</h2>
+              <h2>{user.fullname}</h2>
+              <h2>{user.regno}</h2>
+              <h6 className="text-xs font-medium text-zinc-600 mt-1">
+                Member Since: {arr && arr[2]}-{arr && arr[1]}-{arr && arr[0]}
+              </h6>
+              {id === userId && (
+                <>
+                  <button
+                    className="text-sm font-medium mt-7 p-3 bg-[#002f34] text-white rounded-xl"
+                    onClick={editProfile}
+                  >
+                    Edit Profile
+                  </button>
+                  <button
+                    className="text-sm font-medium mt-3 p-3 bg-[#002f34] text-white rounded-xl"
+                    onClick={changePassword}
+                  >
+                    Change Password
+                  </button>
+                </>
+              )}
+            </div>
           </div>
+          {products.length > 0 ? (
+            <div className="w-[75%] p-5">
+              <h1 className="text-2xl font-bold">Your Products</h1>
+              <Cards
+                data={products}
+                close={userId === id && true}
+                onUpdate={handleProductUpdate}
+              ></Cards>
+            </div>
+          ) : (
+            <div className="w-[75%] h-[87vh] p-5 flex flex-col items-center justify-center">
+              <img src="/Empty.png" alt="" className="w-1/4" />
+              <h1 className="text-xl font-bold mt-7">
+                You haven't listed anything yet
+              </h1>
+              <h1 className="text-zinc-500 mt-2">
+                Let go of what you don't use anymore
+              </h1>
+              <NavLink
+                to={"/addproduct"}
+                className={"mt-7 p-3 bg-[#002f34] text-white rounded-xl"}
+              >
+                Start selling
+              </NavLink>
+            </div>
+          )}
         </div>
-        {products.length > 0 ? (
-          <div className="w-[75%] p-5">
-            <h1 className="text-2xl font-bold">Your Products</h1>
-            <Cards
-              data={products}
-              close={userId === id && true}
-              onUpdate={handleProductUpdate}
-            ></Cards>
+      )}
+
+      {!isDesktop && (
+        <div className="pt-[22%] flex flex-col relative">
+          <div className="w-full p-5 flex">
+            <img
+              src={user.avatar}
+              alt=""
+              className="h-24 w-24 rounded-full mx-auto"
+            />
+
+            <div className="text-lg font-bold flex flex-col items-center">
+              <h2>{user.username}</h2>
+              <h2>{user.fullname}</h2>
+              <h2>{user.regno}</h2>
+              <h6 className="text-xs font-medium text-zinc-600 mt-1">
+                Member Since: {arr && arr[2]}-{arr && arr[1]}-{arr && arr[0]}
+              </h6>
+            </div>
           </div>
-        ) : (
-          <div className="w-[75%] h-[87vh] p-5 flex flex-col items-center justify-center">
-            <img src="/Empty.png" alt="" className="w-1/4" />
-            <h1 className="text-xl font-bold mt-7">
-              You haven't listed anything yet
-            </h1>
-            <h1 className="text-zinc-500 mt-2">
-              Let go of what you don't use anymore
-            </h1>
-            <NavLink
-              to={"/addproduct"}
-              className={"mt-7 p-3 bg-[#002f34] text-white rounded-xl"}
-            >
-              Start selling
-            </NavLink>
-          </div>
-        )}
-      </div>
+          {id === userId && (
+            <div className="px-[1%]">
+              <button
+                className="text-sm font-medium p-3 bg-[#002f34] text-white rounded-xl"
+                onClick={editProfile}
+              >
+                Edit Profile
+              </button>
+              <button
+                className="text-sm font-medium ml-3 p-3 bg-[#002f34] text-white rounded-xl"
+                onClick={changePassword}
+              >
+                Change Password
+              </button>
+            </div>
+          )}
+          {products.length > 0 ? (
+            <div className="w-full py-5 px-[1.5%]">
+              <h1 className="text-2xl -mb-3 font-bold px-[2%]">
+                Your Products
+              </h1>
+              <Cards
+                data={products}
+                close={userId === id && true}
+                onUpdate={handleProductUpdate}
+              ></Cards>
+            </div>
+          ) : (
+            <div className="w-[75%] h-[87vh] p-5 flex flex-col items-center justify-center">
+              <img src="/Empty.png" alt="" className="w-1/4" />
+              <h1 className="text-xl font-bold mt-7">
+                You haven't listed anything yet
+              </h1>
+              <h1 className="text-zinc-500 mt-2">
+                Let go of what you don't use anymore
+              </h1>
+              <NavLink
+                to={"/addproduct"}
+                className={"mt-7 p-3 bg-[#002f34] text-white rounded-xl"}
+              >
+                Start selling
+              </NavLink>
+            </div>
+          )}
+        </div>
+      )}
       <Outlet context={{ user, handleUserUpdate }}></Outlet>
       <Outlet context={{ user, handleUserUpdate }}></Outlet>
     </>
