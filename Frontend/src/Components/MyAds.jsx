@@ -2,8 +2,10 @@ import axios from "../Utils/Axios";
 import React, { useEffect, useState } from "react";
 import { errorHandler } from "../Utils/HandleError";
 import { Outlet, useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 const MyAds = () => {
+  const isDesktop = useMediaQuery({ minWidth: 1224 });
   const navigate = useNavigate();
   const [ads, setads] = useState([]);
   const getAds = () => {
@@ -42,37 +44,71 @@ const MyAds = () => {
   };
 
   return (
-    <div className="pt-[6%] w-full p-5">
-      <h1 className="my-10 text-3xl font-black text-center">My Ads</h1>
-      {ads &&
-        ads.map((ad, i) => (
-          <div
-            key={i}
-            className="bg-white rounded-xl w-[80%] h-[20vh] rounded-xl flex items-center px-5 py-3 justify-between mx-auto text-sm font-semibold"
-          >
-            <h1>
-              {day(i)}-{month(i)}-{year(i)}
-            </h1>
-            <div className="w-[18%] h-full flex items-center justify-between p-2">
-              <img src={ad.image[0]} alt="" className="h-[80%] w-20" />
-              <h1>{ad.title}</h1>
-            </div>
-            <div className="w-[15%] h-full flex items-center justify-between p-2">
-              <h1>{ad.price}</h1>
-              <h1 className="p-2 px-5 bg-green-400 rounded-xl">Sold</h1>
-            </div>
-            <div className="h-full flex items-center justify-between p-2">
-              <button
-                onClick={() => clickHandler(ad._id)}
-                className="p-2 px-5 bg-red-400 rounded-xl"
+    <>
+      {isDesktop && (
+        <div className="pt-[6%] w-full p-5">
+          <h1 className="my-10 text-3xl font-black text-center">My Ads</h1>
+          {ads &&
+            ads.map((ad, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-xl w-[80%] h-[20vh] rounded-xl flex items-center px-5 py-3 justify-between mx-auto text-sm font-semibold"
               >
-                Remove
-              </button>
-            </div>
-          </div>
-        ))}
-      <Outlet context={{onChange}}></Outlet>
-    </div>
+                <h1>
+                  {day(i)}-{month(i)}-{year(i)}
+                </h1>
+                <div className="w-[18%] h-full flex items-center justify-between p-2">
+                  <img src={ad.image[0]} alt="" className="h-[80%] w-20" />
+                  <h1>{ad.title}</h1>
+                </div>
+                <div className="w-[15%] h-full flex items-center justify-between p-2">
+                  <h1>{ad.price}</h1>
+                  <h1 className="p-2 px-5 bg-green-400 rounded-xl">Sold</h1>
+                </div>
+                <div className="h-full flex items-center justify-between p-2">
+                  <button
+                    onClick={() => clickHandler(ad._id)}
+                    className="p-2 px-5 bg-red-400 rounded-xl"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))}
+          <Outlet context={{ onChange }}></Outlet>
+        </div>
+      )}
+
+      {!isDesktop && (
+        <div className="pt-[20%] w-full p-5">
+          <h1 className="my-10 text-3xl font-black text-center">My Ads</h1>
+          {ads &&
+            ads.map((ad, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-xl w-[80%] h-[20vh] rounded-xl flex items-center px-5 py-3 justify-between mx-auto text-sm font-semibold"
+              >
+                <img src={ad.image[0]} alt="" className="h-[80%] w-20" />
+                <div>
+                  <h1>
+                    {day(i)}-{month(i)}-{year(i)}
+                  </h1>
+                  <h1>{ad.title}</h1>
+                  <h1>{ad.price}</h1>
+                  <h1 className="p-2 px-5 bg-green-400 rounded-xl">Sold</h1>
+                  <button
+                    onClick={() => clickHandler(ad._id)}
+                    className="p-2 px-5 bg-red-400 rounded-xl"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))}
+          <Outlet context={{ onChange }}></Outlet>
+        </div>
+      )}
+    </>
   );
 };
 
