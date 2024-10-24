@@ -2,8 +2,10 @@ import axios from "../../Utils/Axios";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { errorHandler } from "../../Utils/HandleError";
+import { useMediaQuery } from "react-responsive";
 
 const UpdateMobile = () => {
+  const isDesktop = useMediaQuery({ minWidth: 1224 });
   const navigate = useNavigate();
   const location = useLocation();
   const mobile = location.state;
@@ -13,11 +15,7 @@ const UpdateMobile = () => {
 
   const handleClick = () => {
     axios
-      .put(
-        "/users/update-mobile",
-        { mobno: phone },
-        { withCredentials: true }
-      )
+      .put("/users/update-mobile", { mobno: phone }, { withCredentials: true })
       .then((res) => {
         console.log(res);
 
@@ -27,7 +25,7 @@ const UpdateMobile = () => {
       .catch((error) => {
         errorHandler(error);
       });
-  };                                  
+  };
 
   const handleVerify = () => {
     axios
@@ -49,49 +47,99 @@ const UpdateMobile = () => {
   };
 
   return (
-    <div className="absolute w-[40%] h-[75vh] rounded-xl bg-white p-5 flex flex-col items-center translate-x-[75%] translate-y-[10%]">
-      <h1 className="text-xl font-bold mt-10">
-        Enter your new phone number to get verified
-      </h1>
-      <h1 className="text-sm text-zinc-600 font-semibold mt-3">
-        We will send you a verification code on same number
-      </h1>
-      <input
-        type="text"
-        placeholder="Enter your phone number"
-        className="w-full mt-10 p-3 rounded-md border-2 border-gray-300 focus:outline-none focus:border-zinc-500"
-        value={phone}
-        onChange={(e) => {
-          setphone(e.target.value);
-        }}
-      />
-      {!show ? (
-        <button
-          onClick={handleClick}
-          className="p-2 bg-[#002f34] w-fit mx-auto rounded-xl text-white mt-10"
-        >
-          Save Changes
-        </button>
-      ) : (
-        <div className="w-full">
+    <>
+      {isDesktop && (
+        <div className="absolute w-[40%] h-[75vh] rounded-xl bg-white p-5 flex flex-col items-center translate-x-[75%] translate-y-[10%]">
+          <h1 className="text-xl font-bold mt-10">
+            Enter your new phone number to get verified
+          </h1>
+          <h1 className="text-sm text-zinc-600 font-semibold mt-3">
+            We will send you a verification code on same number
+          </h1>
           <input
             type="text"
-            placeholder="Enter verification code"
+            placeholder="Enter your phone number"
             className="w-full mt-10 p-3 rounded-md border-2 border-gray-300 focus:outline-none focus:border-zinc-500"
-            value={otp}
+            value={phone}
             onChange={(e) => {
-              setotp(e.target.value);
+              setphone(e.target.value);
             }}
           />
-          <button
-            onClick={handleVerify}
-            className="px-3 py-1 bg-[#002f34] w-fit translate-x-[300%] rounded-xl text-white mt-10"
-          >
-            Verify
-          </button>
+          {!show ? (
+            <button
+              onClick={handleClick}
+              className="p-2 bg-[#002f34] w-fit mx-auto rounded-xl text-white mt-10"
+            >
+              Save Changes
+            </button>
+          ) : (
+            <div className="w-full">
+              <input
+                type="text"
+                placeholder="Enter verification code"
+                className="w-full mt-10 p-3 rounded-md border-2 border-gray-300 focus:outline-none focus:border-zinc-500"
+                value={otp}
+                onChange={(e) => {
+                  setotp(e.target.value);
+                }}
+              />
+              <button
+                onClick={handleVerify}
+                className="px-3 py-1 bg-[#002f34] w-fit translate-x-[300%] rounded-xl text-white mt-10"
+              >
+                Verify
+              </button>
+            </div>
+          )}
         </div>
       )}
-    </div>
+
+      {!isDesktop && (
+        <div className="absolute mt-[26%] mx-[10%] h-[71.5%] w-[80%] flex flex-col px-10 py-5 bg-white rounded-xl">
+          <h1 className="text-xl font-bold mt-10">
+            Enter your new phone number to get verified
+          </h1>
+          <h1 className="text-sm text-zinc-600 font-semibold mt-3">
+            We will send you a verification code on same number
+          </h1>
+          <input
+            type="text"
+            placeholder="Enter your phone number"
+            className="w-full mt-10 p-3 rounded-md border-2 border-gray-300 focus:outline-none focus:border-zinc-500"
+            value={phone}
+            onChange={(e) => {
+              setphone(e.target.value);
+            }}
+          />
+          {!show ? (
+            <button
+              onClick={handleClick}
+              className="p-2 bg-[#002f34] w-fit mx-auto rounded-xl text-white mt-10"
+            >
+              Save Changes
+            </button>
+          ) : (
+            <div className="w-full">
+              <input
+                type="text"
+                placeholder="Enter verification code"
+                className="w-full mt-10 p-3 rounded-md border-2 border-gray-300 focus:outline-none focus:border-zinc-500"
+                value={otp}
+                onChange={(e) => {
+                  setotp(e.target.value);
+                }}
+              />
+              <button
+                onClick={handleVerify}
+                className="px-3 py-1 bg-[#002f34] w-fit translate-x-[300%] rounded-xl text-white mt-10"
+              >
+                Verify
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+    </>
   );
 };
 
