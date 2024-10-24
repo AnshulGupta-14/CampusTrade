@@ -104,6 +104,7 @@ const UpdateMobile = () => {
           </h1>
           <input
             type="text"
+            autoFocus
             placeholder="Enter your phone number"
             className="w-full mt-10 p-3 rounded-md border-2 border-gray-300 focus:outline-none focus:border-zinc-500"
             value={phone}
