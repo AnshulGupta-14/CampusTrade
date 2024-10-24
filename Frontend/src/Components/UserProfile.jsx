@@ -162,7 +162,7 @@ const UserProfile = () => {
             </div>
           </div>
           {id === userId && (
-            <div className="px-[13%]">
+            <div className="mx-auto">
               <button
                 className="text-sm font-medium p-3 bg-[#002f34] text-white rounded-xl"
                 onClick={editProfile}
