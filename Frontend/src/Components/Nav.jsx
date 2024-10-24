@@ -125,7 +125,7 @@ const Nav = ({ data }) => {
                   onMouseEnter={() => {
                     setshowOver(true);
                   }}
-                  className="flex items-center justify-center shadow-inner bg-[#002f34] h-10 w-10 rounded-full text-white"
+                  className="flex items-center justify-center shadow-inner bg-[#002f34] h-[11%] w-[10%] rounded-full text-white"
                 >
                   {user ? (
                     <h1 className="text-2xl font-bold">
