@@ -49,9 +49,11 @@ const Favourites = () => {
       )}
 
       {!isDesktop && (
-        <div className="w-screen h-screen pt-[20%] px-[1.8]">
+        <div className="pt-[20%]">
           {Favourites.length > 0 ? (
-            <Cards data={Favourites} onUpdate={getFavourites}></Cards>
+            <div className="w-full px-[1.8]">
+              <Cards data={Favourites} onUpdate={getFavourites}></Cards>
+            </div>
           ) : (
             <div className="px-[5%] pt-[10%] w-full flex flex-col items-center justify-center">
               <img src="./Empty.png" alt="" className="h-60 w-60" />
