@@ -7,9 +7,10 @@ import "remixicon/fonts/remixicon.css";
 // import Cookie from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { AuthContext } from "../../Context/AuthContext";
+import { useMediaQuery } from "react-responsive";
 
 const Card = ({ data, close = false, onUpdate }) => {
-  // const accessToken = Cookie.get("accessToken");
+  const isDesktop = useMediaQuery({ minWidth: 1224 });
   const { accessToken } = useContext(AuthContext);
   const userId = accessToken ? jwtDecode(accessToken)._id : null;
   const [style, setstyle] = useState(data.likedBy.includes(userId));
@@ -70,49 +71,99 @@ const Card = ({ data, close = false, onUpdate }) => {
   // console.log(likedBy);
 
   return (
-    <NavLink
-      to={`/productdetails/${data._id}`}
-      className="w-[22vw] h-[40vh] relative"
-      onMouseOver={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {close ? (
-        <div className="relative group z-10">
-          <div className="absolute right-0 text-xl bg-red-500 rounded-full p-1 text-white">
-            <IoMdClose onClick={handleClick} />
+    <>
+      {isDesktop && (
+        <NavLink
+          to={`/productdetails/${data._id}`}
+          className="w-[22vw] h-[40vh] relative"
+          onMouseOver={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {close ? (
+            <div className="relative group z-10">
+              <div className="absolute right-0 text-xl bg-red-500 rounded-full p-1 text-white">
+                <IoMdClose onClick={handleClick} />
+              </div>
+              <h1 className="hidden absolute -right-7 -top-7 group-hover:block bg-red-400 text-xs rounded-xl p-1 text-white">
+                Remove Element
+              </h1>
+            </div>
+          ) : (
+            accessToken && (
+              <i
+                onClick={handleLike}
+                className={`ri-heart-3-fill ${
+                  style ? "text-red-500" : "text-white"
+                } absolute z-10 right-0 text-3xl`}
+              ></i>
+            )
+          )}
+          <div className="w-full h-[70%] relative">
+            <img
+              src={data.image[0]}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+            <div className="h-full w-full absolute inset-0 bg-black opacity-30" />
           </div>
-          <h1 className="hidden absolute -right-7 -top-7 group-hover:block bg-red-400 text-xs rounded-xl p-1 text-white">
-            Remove Element
-          </h1>
-        </div>
-      ) : (
-        accessToken && (
-          <i
-            onClick={handleLike}
-            className={`ri-heart-3-fill ${
-              style ? "text-red-500" : "text-white"
-            } absolute z-10 right-0 text-3xl`}
-          ></i>
-        )
+          <div className="w-full h-[30%] bg-zinc-300 flex flex-col justify-center items-start px-5">
+            <h1 className="text-xl font-bold">&#8377;{data.price}</h1>
+            <p className="text-gray-600">{data.title}</p>
+          </div>
+          <div
+            className={`absolute inset-0 transition-opacity duration-300 ${
+              isHovered ? "bg-black opacity-40" : "opacity-0"
+            }`}
+          />
+        </NavLink>
       )}
-      <div className="w-full h-[70%] relative">
-        <img
-          src={data.image[0]}
-          alt=""
-          className="w-full h-full object-cover"
-        />
-        <div className="h-full w-full absolute inset-0 bg-black opacity-30" />
-      </div>
-      <div className="w-full h-[30%] bg-zinc-300 flex flex-col justify-center items-start px-5">
-        <h1 className="text-xl font-bold">&#8377;{data.price}</h1>
-        <p className="text-gray-600">{data.title}</p>
-      </div>
-      <div
-        className={`absolute inset-0 transition-opacity duration-300 ${
-          isHovered ? "bg-black opacity-40" : "opacity-0"
-        }`}
-      />
-    </NavLink>
+
+      {!isDesktop && (
+        <NavLink
+          to={`/productdetails/${data._id}`}
+          className="w-[43vw] h-[30vh] relative"
+          onMouseOver={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {close ? (
+            <div className="relative group z-10">
+              <div className="absolute right-0 text-xl bg-red-500 rounded-full p-1 text-white">
+                <IoMdClose onClick={handleClick} />
+              </div>
+              <h1 className="hidden absolute -right-7 -top-7 group-hover:block bg-red-400 text-xs rounded-xl p-1 text-white">
+                Remove Element
+              </h1>
+            </div>
+          ) : (
+            accessToken && (
+              <i
+                onClick={handleLike}
+                className={`ri-heart-3-fill ${
+                  style ? "text-red-500" : "text-white"
+                } absolute z-10 right-0 text-3xl`}
+              ></i>
+            )
+          )}
+          <div className="w-full h-[70%] relative">
+            <img
+              src={data.image[0]}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+            <div className="h-full w-full absolute inset-0 bg-black opacity-30" />
+          </div>
+          <div className="w-full h-[30%] bg-zinc-300 flex flex-col justify-center items-start px-5">
+            <h1 className="text-xl font-bold">&#8377;{data.price}</h1>
+            <p className="text-gray-600">{data.title}</p>
+          </div>
+          <div
+            className={`absolute inset-0 transition-opacity duration-300 ${
+              isHovered ? "bg-black opacity-40" : "opacity-0"
+            }`}
+          />
+        </NavLink>
+      )}
+    </>
   );
 };
 

@@ -4,9 +4,11 @@ import Cards from "./Partials/Cards";
 import LocomotiveScroll from "locomotive-scroll";
 import { errorHandler } from "../Utils/HandleError";
 import { useLocation } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 // import { ProductContext } from "../Context/Context";
 
 const Home = () => {
+  const isDesktop = useMediaQuery({ minWidth: 1224 });
   const location = useLocation();
   const locomotiveScroll = new LocomotiveScroll();
   const [products, setproducts] = useState([]);
@@ -28,11 +30,18 @@ const Home = () => {
   }, [location]);
 
   return (
-    products && (
-      <div className="w-full h-full px-[1.7%] pt-[5%]">
-        <Cards data={products}></Cards>
-      </div>
-    )
+    <>
+      {products && isDesktop && (
+        <div className="w-full h-full px-[1.7%] pt-[5%]">
+          <Cards data={products}></Cards>
+        </div>
+      )}
+      {products && !isDesktop && (
+        <div className="w-full h-full px-[1.7%] pt-[20%]">
+          <Cards data={products}></Cards>
+        </div>
+      )}
+    </>
   );
 };
 
