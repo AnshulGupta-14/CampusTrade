@@ -49,11 +49,11 @@ const Favourites = () => {
       )}
 
       {!isDesktop && (
-        <div className="pt-[25.2%] px-[5%]">
+        <div className="pt-[25.2%]">
           {Favourites.length > 0 ? (
             <Cards data={Favourites} onUpdate={getFavourites}></Cards>
           ) : (
-            <div className="pt-[10%] w-full flex flex-col items-center justify-center">
+            <div className="px-[5%] pt-[10%] w-full flex flex-col items-center justify-center">
               <img src="./Empty.png" alt="" className="h-60 w-60" />
               <h1 className="mt-7 text-xl font-bold text-center">
                 Looks like you haven't found your favorites yet.{" "}
