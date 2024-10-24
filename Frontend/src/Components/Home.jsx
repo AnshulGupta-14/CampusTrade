@@ -37,7 +37,7 @@ const Home = () => {
         </div>
       )}
       {products && !isDesktop && (
-        <div className="w-full h-full px-[1.7%] pt-[20%]">
+        <div className="w-full h-full px-[1.8%] pt-[20%]">
           <Cards data={products}></Cards>
         </div>
       )}

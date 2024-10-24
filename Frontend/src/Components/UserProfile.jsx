@@ -178,7 +178,7 @@ const UserProfile = () => {
             </div>
           )}
           {products.length > 0 ? (
-            <div className="w-full py-5 px-[1.5%]">
+            <div className="w-full py-5 px-[1.8%]">
               <h1 className="text-2xl -mb-3 font-bold px-[2%]">
                 Your Products
               </h1>
