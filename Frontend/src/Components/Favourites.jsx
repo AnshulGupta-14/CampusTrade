@@ -49,7 +49,7 @@ const Favourites = () => {
       )}
 
       {!isDesktop && (
-        <div className="w-full pt-[20%] px-[1.8]">
+        <div className="w-screen h-screen pt-[20%] px-[1.8]">
           {Favourites.length > 0 ? (
             <Cards data={Favourites} onUpdate={getFavourites}></Cards>
           ) : (
