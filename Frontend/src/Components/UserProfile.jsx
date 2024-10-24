@@ -145,14 +145,14 @@ const UserProfile = () => {
 
       {!isDesktop && (
         <div className="pt-[22%] flex flex-col relative">
-          <div className="w-full p-5 flex">
+          <div className="w-full p-5 flex gap-10">
             <img
               src={user.avatar}
               alt=""
-              className="h-24 w-24 rounded-full mx-auto"
+              className="h-28 w-28 rounded-full"
             />
 
-            <div className="text-lg font-bold flex flex-col items-center">
+            <div className="text-lg font-bold flex flex-col">
               <h2>{user.username}</h2>
               <h2>{user.fullname}</h2>
               <h2>{user.regno}</h2>
@@ -162,7 +162,7 @@ const UserProfile = () => {
             </div>
           </div>
           {id === userId && (
-            <div className="px-[1%]">
+            <div className="px-[13%]">
               <button
                 className="text-sm font-medium p-3 bg-[#002f34] text-white rounded-xl"
                 onClick={editProfile}
