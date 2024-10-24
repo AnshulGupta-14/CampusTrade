@@ -125,10 +125,10 @@ const Nav = ({ data }) => {
                   onMouseEnter={() => {
                     setshowOver(true);
                   }}
-                  className="flex items-center justify-center shadow-inner bg-[#002f34] px-2.5 py-1 rounded-full text-white"
+                  className="flex items-center justify-center shadow-inner bg-[#002f34] h-[10%] w-[10%] rounded-full text-white"
                 >
                   {user ? (
-                    <h1 className="text-xl font-bold">
+                    <h1 className="text-2xl font-bold">
                       {user.fullname[0].toUpperCase()}
                     </h1>
                   ) : (
@@ -202,7 +202,7 @@ const Nav = ({ data }) => {
                   onMouseEnter={() => {
                     setshowOver(true);
                   }}
-                  className="flex items-center justify-center shadow-inner bg-[#002f34] h-8 w-10 rounded-full text-white"
+                  className="flex items-center justify-center shadow-inner bg-[#002f34] h-[10%] w-[10%] rounded-full text-white"
                 >
                   {user ? (
                     <h1 className="text-2xl font-bold">
