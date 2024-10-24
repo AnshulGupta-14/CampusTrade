@@ -129,7 +129,7 @@ const Nav = ({ data }) => {
                 >
                   {user ? (
                     <h1 className="text-2xl font-bold">
-                      {user[0].toUpperCase()}
+                      {user.fullname[0].toUpperCase()}
                     </h1>
                   ) : (
                     <BiSolidUser className="text-2xl"></BiSolidUser>
@@ -209,7 +209,7 @@ const Nav = ({ data }) => {
                 >
                   {user ? (
                     <h1 className="text-2xl font-bold">
-                      {user[0].toUpperCase()}
+                      {user.fullname[0].toUpperCase()}
                     </h1>
                   ) : (
                     <BiSolidUser className="text-2xl"></BiSolidUser>
