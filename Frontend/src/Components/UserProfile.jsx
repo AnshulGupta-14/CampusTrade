@@ -75,7 +75,7 @@ const UserProfile = () => {
   };
 
   const changePassword = () => {
-    navigate(`password`, { state: user });
+    navigate(`/password`, { state: user });
   };
 
   return (
@@ -207,8 +207,6 @@ const UserProfile = () => {
           )}
         </div>
       )}
-      <Outlet context={{ user, handleUserUpdate }}></Outlet>
-      <Outlet context={{ user, handleUserUpdate }}></Outlet>
     </>
   );
 };

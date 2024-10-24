@@ -21,9 +21,8 @@ const Routing = () => {
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/productdetails/:id" element={<ProductDetails />}></Route>
-      <Route path="/profile/:id?" element={<UserProfile />}>
-        <Route path="password" element={<UpdatePassword />}></Route>
-      </Route>
+      <Route path="/profile/:id?" element={<UserProfile />}></Route>
+      <Route path="/password" element={<UpdatePassword />}></Route>
       <Route path="/addproduct" element={<AddProduct />}></Route>
       <Route path="/otp" element={<Otp />}></Route>
       <Route path="/update-profile" element={<UpdateProfile />}>
