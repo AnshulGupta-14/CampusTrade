@@ -8,11 +8,8 @@ import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const location = useLocation();
-
   const locomotiveScroll = new LocomotiveScroll();
-
   const [products, setproducts] = useState([]);
-  // const [products, setproducts] = useContext(ProductContext);
 
   useEffect(() => {
     const url = "/products/get-products";
