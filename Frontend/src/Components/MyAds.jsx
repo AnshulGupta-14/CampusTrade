@@ -63,7 +63,6 @@ const MyAds = () => {
                 </div>
                 <div className="w-[15%] h-full flex items-center justify-between p-2">
                   <h1>{ad.price}</h1>
-                  <h1 className="p-2 px-5 bg-green-400 rounded-xl">Sold</h1>
                 </div>
                 <div className="h-full flex items-center justify-between p-2">
                   <button
@@ -86,19 +85,24 @@ const MyAds = () => {
             ads.map((ad, i) => (
               <div
                 key={i}
-                className="bg-white rounded-xl w-[80%] h-[20vh] rounded-xl flex items-center px-5 py-3 justify-between mx-auto text-sm font-semibold"
+                className="bg-white rounded-xl w-full h-[23vh] rounded-xl flex items-center py-3 gap-[10%] px-5 mx-auto text-sm font-semibold"
               >
-                <img src={ad.image[0]} alt="" className="h-[80%] w-20" />
-                <div>
+                <div className="w-[40%] h-full">
                   <h1>
                     {day(i)}-{month(i)}-{year(i)}
                   </h1>
+                  <img
+                    src={ad.image[0]}
+                    alt=""
+                    className="h-[80%] w-full mt-2"
+                  />
+                </div>
+                <div className="flex flex-col gap-1 text-lg mt-4">
                   <h1>{ad.title}</h1>
                   <h1>{ad.price}</h1>
-                  <h1 className="p-2 px-5 bg-green-400 rounded-xl">Sold</h1>
                   <button
                     onClick={() => clickHandler(ad._id)}
-                    className="p-2 px-5 bg-red-400 rounded-xl"
+                    className="w-fit p-1 px-5 bg-red-400 rounded-xl mt-2"
                   >
                     Remove
                   </button>
