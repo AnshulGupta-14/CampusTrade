@@ -179,9 +179,6 @@ const Nav = ({ data }) => {
       {!isDesktop && (
         <>
           <div className="w-screen h-[7vh] p-2 px-5 bg-zinc-300 flex items-center justify-between">
-            <div className="w-[15%] h-full flex items-center">
-              <img src="MainLogo.png" alt="" className="w-full h-full" />
-            </div>
             {!accessToken ? (
               <div className="w-[15%]">
                 <NavLink
@@ -193,7 +190,7 @@ const Nav = ({ data }) => {
               </div>
             ) : (
               <div
-                className="w-[15%] flex items-center justify-center relative"
+                className="w-[10%] flex items-center justify-center relative"
                 onMouseLeave={() => {
                   setshowOver(false);
                 }}
@@ -205,20 +202,20 @@ const Nav = ({ data }) => {
                   onMouseEnter={() => {
                     setshowOver(true);
                   }}
-                  className="flex items-center justify-center shadow-inner bg-[#002f34] h-10 w-10 rounded-full text-white"
+                  className="flex items-center justify-center shadow-inner bg-[#002f34] h-8 w-10 rounded-full text-white"
                 >
                   {user ? (
                     <h1 className="text-2xl font-bold">
                       {user.fullname[0].toUpperCase()}
                     </h1>
                   ) : (
-                    <BiSolidUser className="text-2xl"></BiSolidUser>
+                    <BiSolidUser className="text-xl"></BiSolidUser>
                   )}
                 </div>
 
                 {showOver && (
-                  <div className="absolute top-10 bg-white p-3 z-20">
-                    <div className="p-2 flex flex-col gap-2">
+                  <div className="absolute w-[35vw] top-10 left-0 bg-white z-20">
+                    <div className="p-2 flex flex-col gap-2 text-xs">
                       <Link
                         className="p-2 rounded-lg bg-blue-500"
                         to={`/profile/${jwtDecode(accessToken)._id}`}
@@ -251,6 +248,9 @@ const Nav = ({ data }) => {
                 )}
               </div>
             )}
+            <div className="w-[15%] h-full flex items-center">
+              <img src="MainLogo.png" alt="" className="w-full h-full" />
+            </div>
           </div>
           <div className="relative p-2 px-5 mt-1 h-[5vh] w-full flex justify-between bg-zinc-300">
             <input
