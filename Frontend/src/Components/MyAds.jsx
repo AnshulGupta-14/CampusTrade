@@ -85,7 +85,7 @@ const MyAds = () => {
             ads.map((ad, i) => (
               <div
                 key={i}
-                className="bg-white rounded-xl w-full h-[23vh] rounded-xl flex items-center py-3 gap-[10%] px-5 mx-auto text-sm font-semibold"
+                className="bg-white rounded-xl w-full h-[20vh] rounded-xl flex items-center py-3 gap-[10%] px-5 mx-auto text-sm font-semibold"
               >
                 <div className="w-[40%] h-full">
                   <h1>
@@ -102,7 +102,7 @@ const MyAds = () => {
                   <h1>{ad.price}</h1>
                   <button
                     onClick={() => clickHandler(ad._id)}
-                    className="w-fit p-1 px-5 bg-red-400 rounded-xl mt-2"
+                    className="w-fit p-1 px-5 bg-red-400 rounded-xl mt-2 text-sm"
                   >
                     Remove
                   </button>
