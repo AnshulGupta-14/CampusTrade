@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { errorHandler } from "../Utils/HandleError";
 import { useMediaQuery } from "react-responsive";
-import { useMediaQuery } from "react-responsive";
 
 const Otp = () => {
   const isDesktop = useMediaQuery({ minWidth: 1224 });
