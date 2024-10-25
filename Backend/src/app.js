@@ -2,10 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
-import { createClient } from "redis";
-import connectRedis from "connect-redis";
 
-const RedisStore = connectRedis(session);
 const app = express();
 
 app.use(
