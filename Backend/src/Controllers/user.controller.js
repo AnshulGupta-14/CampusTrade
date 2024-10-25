@@ -128,7 +128,9 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new ApiError(401, "Invalid password");
   }
 
-  const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(user);
+  const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(
+    user
+  );
 
   const options = {
     httpOnly: true,
@@ -407,16 +409,15 @@ const updateMobileNumber = asyncHandler(async (req, res) => {
 const verifyOTP = asyncHandler(async (req, res) => {
   try {
     const { otp } = req.body;
-    
-    
+
     if (!otp) {
       throw new ApiError(400, "OTP is required");
     }
-    
+
+    console.log(req.session.otpCode);
     if (otp !== req.session.otpCode) {
       throw new ApiError(400, "Invalid OTP");
     }
-    console.log("Anshul");
 
     if (req.session.userData) {
       const {
