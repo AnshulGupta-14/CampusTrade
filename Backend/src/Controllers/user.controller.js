@@ -97,6 +97,9 @@ const registerUser = asyncHandler(async (req, res) => {
     avatar,
     coverImage,
   };
+
+  console.log(req.session.otpCode);
+
   return res
     .status(200)
     .json(new ApiResponse(200, null, "OTP sent successfully"));
