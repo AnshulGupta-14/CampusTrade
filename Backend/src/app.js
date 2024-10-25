@@ -25,7 +25,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       secure: process.env.NODE_ENV === "production", // Ensure secure cookies in production
-      // httpOnly: true,
+      httpOnly: true,
       maxAge: 1000 * 60 * 15, // Session expiration time in milliseconds (15 minutes here)
     },
   })
