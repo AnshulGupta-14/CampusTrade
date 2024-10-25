@@ -2,7 +2,10 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import { createClient } from "redis";
+import connectRedis from "connect-redis";
 
+const RedisStore = connectRedis(session);
 const app = express();
 
 app.use(
@@ -17,7 +20,7 @@ app.use(
     secret: "Anshul", // Change this to a strong random secret
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: process.env.NODE_ENV === "production" }, // Set to true if using https
+    cookie: { secure: process.env.NODE_ENV === "production", sameSite: "None" }, // Set to true if using https
   })
 );
 
