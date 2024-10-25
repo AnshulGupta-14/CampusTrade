@@ -233,6 +233,12 @@ const AddProduct = () => {
           <option value="select">Select</option>
           <option>Fiction</option>
           <option>Non-Fiction</option>
+          <option>Educational/Academic</option>
+          <option>Spirituality/Religion</option>
+          <option>Graphic Novels/Comics</option>
+          <option>Poetry</option>
+          <option>Business/Finance</option>
+          <option>Humor/Satire</option>
         </select>
       </div>
       {errors.category && <p className="text-red-500">{errors.category}</p>}

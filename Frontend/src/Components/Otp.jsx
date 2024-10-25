@@ -2,8 +2,11 @@ import axios from "../Utils/Axios";
 import React, { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { errorHandler } from "../Utils/HandleError";
+import { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 
 const Otp = () => {
+  const isDesktop = useMediaQuery({ minWidth: 1224 });
   const navigate = useNavigate();
 
   const [otp, setotp] = useState("");
@@ -27,24 +30,47 @@ const Otp = () => {
 
   return (
     <div className="w-full h-screen pt-[6%] flex items-center justify-center">
-      <div className="w-[30%] flex flex-col px-10 py-5 bg-white rounded-xl">
-        <h1 className="text-2xl font-bold mb-3">Verification</h1>
-        <h1 className="mt-5">OTP</h1>
-        <input
-          className="border border-black p-2 py-1 text-md rounded-md"
-          type="text"
-          value={otp}
-          onChange={(e) => {
-            setotp(e.target.value);
-          }}
-        />
-        <input
-          className="rounded-full mt-7 mx-auto w-1/3 px-5 py-2 bg-[#fcd12d]"
-          type="submit"
-          value={"Verify"}
-          onClick={submithandler}
-        />
-      </div>
+      {isDesktop && (
+        <div className="w-[30%] flex flex-col px-10 py-5 bg-white rounded-xl">
+          <h1 className="text-2xl font-bold mb-3">Verification</h1>
+          <h1 className="mt-5">OTP</h1>
+          <input
+            className="border border-black p-2 py-1 text-md rounded-md"
+            type="text"
+            value={otp}
+            onChange={(e) => {
+              setotp(e.target.value);
+            }}
+          />
+          <input
+            className="rounded-full mt-7 mx-auto w-1/3 px-5 py-2 bg-[#fcd12d]"
+            type="submit"
+            value={"Verify"}
+            onClick={submithandler}
+          />
+        </div>
+      )}
+
+      {!isDesktop && (
+        <div className="w-[80%] flex flex-col px-10 py-5 bg-white rounded-xl">
+          <h1 className="text-2xl font-bold mb-3">Verification</h1>
+          <h1 className="mt-5">OTP</h1>
+          <input
+            className="border border-black p-2 py-1 text-md rounded-md"
+            type="text"
+            value={otp}
+            onChange={(e) => {
+              setotp(e.target.value);
+            }}
+          />
+          <input
+            className="rounded-full mt-7 mx-auto w-1/3 px-5 py-2 bg-[#fcd12d]"
+            type="submit"
+            value={"Verify"}
+            onClick={submithandler}
+          />
+        </div>
+      )}
     </div>
   );
 };
