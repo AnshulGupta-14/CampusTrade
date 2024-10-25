@@ -11,12 +11,13 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(
   session({
     secret: "Anshul", // Change this to a strong random secret
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true }, // Set to true if using https
+    cookie: { secure: process.env.NODE_ENV === "production" }, // Set to true if using https
   })
 );
 
