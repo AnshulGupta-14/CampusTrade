@@ -146,7 +146,7 @@ const AddProduct = () => {
   return (
     <>
       {isDesktop && (
-        <div className="w-1/2 mx-auto pt-[7%] h-full pb-5">
+        <div className="w-1/2 mx-auto pt-[9%] h-full pb-5">
           <h1 className="text-xl font-bold">Product Details</h1>
           <h1 className="mt-5">Add Title</h1>
           <input
