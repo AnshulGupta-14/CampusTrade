@@ -102,7 +102,7 @@ const Card = ({ data, close = false, onUpdate }) => {
             <img
               src={data.image[0]}
               alt=""
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
             <div className="h-full w-full absolute inset-0 bg-black opacity-30" />
           </div>
