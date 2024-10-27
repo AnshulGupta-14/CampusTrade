@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import MongoStore from "connect-mongo";
+import { ApiError } from "./Utils/ApiError.js";
 
 const app = express();
 
@@ -66,6 +67,7 @@ app.use((err, req, res, next) => {
 
 import userRouter from "./Routes/user.routes.js";
 import productRouter from "./Routes/product.routes.js";
+import { ApiError } from "./Utils/ApiError.js";
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/products", productRouter);
