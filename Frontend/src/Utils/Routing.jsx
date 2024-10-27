@@ -13,11 +13,13 @@ import Confirmation from "../Components/Partials/Confirmation";
 import UpdatePassword from "../Components/Partials/UpdatePassword";
 import UpdateMobile from "../Components/Partials/UpdateMobile";
 import Favourites from "../Components/Favourites";
+import Landing from "../Components/Landing";
 
 const Routing = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />}></Route>
+      <Route path="/" element={<Landing />}></Route>
+      <Route path="/home" element={<Home />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/productdetails/:id" element={<ProductDetails />}></Route>
