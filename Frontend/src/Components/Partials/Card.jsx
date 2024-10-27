@@ -75,7 +75,7 @@ const Card = ({ data, close = false, onUpdate }) => {
       {isDesktop && (
         <NavLink
           to={`/productdetails/${data._id}`}
-          className="w-[22%] h-[40%] relative"
+          className="w-[22vw] h-[40vh] relative"
           onMouseOver={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
