@@ -16,10 +16,14 @@ app.use(
 
 app.use(
   session({
-    secret: "Anshul", // Change this to a strong random secret
+    secret: "Anshul", // or use a secure value from env in production
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true }, // Set to true if using https
+    cookie: {
+      secure: process.env.NODE_ENV === "production", // true only in production
+      httpOnly: true,
+      maxAge: 15 * 60 * 1000, // 15 minutes
+    },
   })
 );
 
