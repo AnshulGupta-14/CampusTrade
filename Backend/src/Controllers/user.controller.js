@@ -417,7 +417,7 @@ const updateMobileNumber = asyncHandler(async (req, res) => {
 const verifyOTP = asyncHandler(async (req, res) => {
   try {
     const { otp } = req.body;
-    console.log(req.session);
+    console.log(req.cookies);
 
     if (!otp) {
       throw new ApiError(400, "OTP is required");
