@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
+import { MemoryStore } from "express-session";
 // import MongoStore from "connect-mongo";
 import { ApiError } from "./Utils/ApiError.js";
 
@@ -19,6 +20,7 @@ app.use(
     secret: "Anshul", // or use a secure value from env in production
     resave: false,
     saveUninitialized: false,
+    store: new MemoryStore(),
     cookie: {
       secure: process.env.NODE_ENV === "production", // true only in production
       httpOnly: true,
