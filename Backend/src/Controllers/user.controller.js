@@ -103,8 +103,6 @@ const registerUser = asyncHandler(async (req, res) => {
     path: "/",
   };
 
-  console.log(req.session.otpCode);
-
   return res
     .status(200)
     .cookie("otpCode", otpCode, options)
