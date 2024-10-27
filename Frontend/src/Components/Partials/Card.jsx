@@ -108,7 +108,7 @@ const Card = ({ data, close = false, onUpdate }) => {
           </div>
           <div className="w-full h-[30%] bg-zinc-300 flex flex-col justify-center items-start px-5 overflow-hidden">
             <h1 className="text-xl font-bold">&#8377;{data.price}</h1>
-            <p className="text-gray-600">{data.title.slice(0,5)}</p>
+            <p className="text-gray-600">{data.title.slice(0,20)}</p>
           </div>
           <div
             className={`absolute inset-0 transition-opacity duration-300 ${
