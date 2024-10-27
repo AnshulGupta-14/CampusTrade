@@ -16,13 +16,13 @@ app.use(
 app.use(
   session({
     store: MongoStore.create({
-      mongoUrl: `${process.env.MONGO_URI}/${process.env.DB_NAME}`, // MongoDB URI, e.g., "mongodb://localhost:27017/yourdbname"
+      url: `${process.env.MONGO_URI}/${process.env.DB_NAME}`, // MongoDB URI, e.g., "mongodb://localhost:27017/yourdbname"
       ttl: 14 * 24 * 60 * 60, // Session expiration time (in seconds), here set to 14 days
       autoRemove: "native", // Automatically remove expired sessions
     }),
     secret: process.env.SESSION_SECRET, // Your session secret
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
       secure: process.env.NODE_ENV === "production", // Ensure secure cookies in production
       httpOnly: true,
