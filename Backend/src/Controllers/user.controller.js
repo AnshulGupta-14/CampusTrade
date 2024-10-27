@@ -29,81 +29,88 @@ const generateAccessAndRefereshTokens = async (user) => {
   }
 };
 
-  const registerUser = asyncHandler(async (req, res) => {
-    const { fullname, email, username, password, regno, mobno } = req.body;
-    // console.log(req.);
+const registerUser = asyncHandler(async (req, res) => {
+  const { fullname, email, username, password, regno, mobno } = req.body;
+  // console.log(req.);
 
-    if (
-      [email, username, password, fullname, regno, mobno].some(
-        (field) => field?.trim === ""
-      )
-    ) {
-      throw new ApiError(400, "All fields are required");
-    }
+  if (
+    [email, username, password, fullname, regno, mobno].some(
+      (field) => field?.trim === ""
+    )
+  ) {
+    throw new ApiError(400, "All fields are required");
+  }
 
-    const existedUser = await User.findOne({
-      $or: [{ username }, { email }, { regno }, { mobno }],
-    });
-
-    if (existedUser) {
-      if (existedUser.username === username.toLowerCase()) {
-        throw new ApiError(409, "User already exists with the same username");
-      }
-      if (existedUser.email === email.toLowerCase()) {
-        throw new ApiError(409, "User already exists with the same email");
-      }
-      if (existedUser.regno === regno) {
-        throw new ApiError(409, "User already exists with the same regno");
-      }
-      if (existedUser.mobno === mobno) {
-        throw new ApiError(409, "User already exists with the same mobno");
-      }
-    }
-    const avatarLocalPath = req.files?.avatar[0]?.path;
-    //const coverImageLocalPath = req.files?.coverImage[0]?.path;
-
-    let coverImageLocalPath;
-    if (
-      req.files &&
-      Array.isArray(req.files.coverImage) &&
-      req.files.coverImage.length > 0
-    ) {
-      coverImageLocalPath = req.files.coverImage[0].path;
-    }
-
-    if (!avatarLocalPath) {
-      throw new ApiError(400, "Avatar file is required");
-    }
-
-    const avatar = await uploadOnCloudinary(avatarLocalPath);
-    const coverImage = await uploadOnCloudinary(coverImageLocalPath);
-    //   console.log(avatar);
-
-    if (!avatar) {
-      throw new ApiError(400, "Avatar file is required");
-    }
-
-    const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
-    await sendOTPFromTwilio(otpCode, mobno);
-
-    req.session.otpCode = otpCode;
-    req.session.userData = {
-      fullname,
-      email,
-      username,
-      password,
-      regno,
-      mobno,
-      avatar,
-      coverImage,
-    };
-
-    console.log(req.session.otpCode);
-
-    return res
-      .status(200)
-      .json(new ApiResponse(200, null, "OTP sent successfully"));
+  const existedUser = await User.findOne({
+    $or: [{ username }, { email }, { regno }, { mobno }],
   });
+
+  if (existedUser) {
+    if (existedUser.username === username.toLowerCase()) {
+      throw new ApiError(409, "User already exists with the same username");
+    }
+    if (existedUser.email === email.toLowerCase()) {
+      throw new ApiError(409, "User already exists with the same email");
+    }
+    if (existedUser.regno === regno) {
+      throw new ApiError(409, "User already exists with the same regno");
+    }
+    if (existedUser.mobno === mobno) {
+      throw new ApiError(409, "User already exists with the same mobno");
+    }
+  }
+  const avatarLocalPath = req.files?.avatar[0]?.path;
+  //const coverImageLocalPath = req.files?.coverImage[0]?.path;
+
+  let coverImageLocalPath;
+  if (
+    req.files &&
+    Array.isArray(req.files.coverImage) &&
+    req.files.coverImage.length > 0
+  ) {
+    coverImageLocalPath = req.files.coverImage[0].path;
+  }
+
+  if (!avatarLocalPath) {
+    throw new ApiError(400, "Avatar file is required");
+  }
+
+  const avatar = await uploadOnCloudinary(avatarLocalPath);
+  const coverImage = await uploadOnCloudinary(coverImageLocalPath);
+  //   console.log(avatar);
+
+  if (!avatar) {
+    throw new ApiError(400, "Avatar file is required");
+  }
+
+  const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+  await sendOTPFromTwilio(otpCode, mobno);
+
+  const userData = {
+    fullname,
+    email,
+    username,
+    password,
+    regno,
+    mobno,
+    avatar,
+    coverImage,
+  };
+  const options = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "None", // CSRF protection
+    path: "/",
+  };
+
+  console.log(req.session.otpCode);
+
+  return res
+    .status(200)
+    .cookie("otpCode", otpCode, options)
+    .cookie("userData", userData, options)
+    .json(new ApiResponse(200, null, "OTP sent successfully"));
+});
 
 const loginUser = asyncHandler(async (req, res) => {
   // console.log(req.body);
@@ -422,7 +429,7 @@ const verifyOTP = asyncHandler(async (req, res) => {
       throw new ApiError(400, "Invalid OTP");
     }
 
-    if (req.session.userData) {
+    if (req.cookies.userData) {
       const {
         fullname,
         email,
@@ -432,7 +439,7 @@ const verifyOTP = asyncHandler(async (req, res) => {
         mobno,
         avatar,
         coverImage,
-      } = req.session.userData;
+      } = req.cookies.userData;
 
       const user = await User.create({
         fullname,
@@ -445,8 +452,16 @@ const verifyOTP = asyncHandler(async (req, res) => {
         coverImage: coverImage?.url || "",
       });
 
+      const options = {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None", // CSRF protection
+      };
+
       return res
         .status(201)
+        .clearCookie("otpCode",options)
+        .clearCookie("userData",options)
         .json(new ApiResponse(201, user, "User registered successfully"));
     } else {
       const mobno = req.session.mobno;
