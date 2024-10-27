@@ -26,7 +26,7 @@ const Login = () => {
         // console.log(res);
         alert(res.data.message);
         updateAccessToken(res.data.data.accessToken);
-        navigate(-1);
+        navigate("/home");
       })
       .catch((err) => {
         errorHandler(err);
