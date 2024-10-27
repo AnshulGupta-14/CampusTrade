@@ -137,7 +137,7 @@ const Nav = ({ data }) => {
                 </div>
 
                 {showOver && (
-                  <div className="absolute top-20 bg-white p-3 z-20">
+                  <div className="absolute top-16 bg-white p-3 z-20">
                     <div className="p-2 flex flex-col gap-2">
                       <Link
                         className="p-2 rounded-lg bg-blue-500"
