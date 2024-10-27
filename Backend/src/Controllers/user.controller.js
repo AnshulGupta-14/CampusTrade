@@ -406,11 +406,16 @@ const updateMobileNumber = asyncHandler(async (req, res) => {
   const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
   await sendOTPFromTwilio(otpCode, mobno);
 
-  req.session.otpCode = otpCode;
-  req.session.mobno = mobno;
+  const options = {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None", // CSRF protection
+  };
 
   return res
     .status(200)
+    .cookie("otpCode", otpCode, options)
+    .cookie("mobno", mobno, options)
     .json(new ApiResponse(200, null, "OTP sent successfully"));
 });
 
@@ -458,11 +463,11 @@ const verifyOTP = asyncHandler(async (req, res) => {
 
       return res
         .status(201)
-        .clearCookie("otpCode",options)
-        .clearCookie("userData",options)
+        .clearCookie("otpCode", options)
+        .clearCookie("userData", options)
         .json(new ApiResponse(201, user, "User registered successfully"));
     } else {
-      const mobno = req.session.mobno;
+      const mobno = req.cookies.mobno;
       const token = req.cookies?.accessToken;
       const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
       const user = await User.findByIdAndUpdate(
@@ -474,6 +479,8 @@ const verifyOTP = asyncHandler(async (req, res) => {
       console.log(user);
       return res
         .status(200)
+        .clearCookie("otpCode", options)
+        .clearCookie("mobno", options)
         .json(new ApiResponse(200, user, "Mobile number updated successfully"));
     }
   } catch (error) {
