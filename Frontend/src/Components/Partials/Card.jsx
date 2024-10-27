@@ -75,7 +75,7 @@ const Card = ({ data, close = false, onUpdate }) => {
       {isDesktop && (
         <NavLink
           to={`/productdetails/${data._id}`}
-          className="w-[22vw] h-[40vh] relative"
+          className="w-[22%] h-[40%] relative"
           onMouseOver={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -106,7 +106,7 @@ const Card = ({ data, close = false, onUpdate }) => {
             />
             <div className="h-full w-full absolute inset-0 bg-black opacity-30" />
           </div>
-          <div className="w-full h-[30%] bg-zinc-300 flex flex-col justify-center items-start px-5">
+          <div className="w-full h-[30%] bg-zinc-300 flex flex-col justify-center items-start px-5 overflow-y-auto">
             <h1 className="text-xl font-bold">&#8377;{data.price}</h1>
             <p className="text-gray-600">{data.title}</p>
           </div>
