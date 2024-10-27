@@ -417,7 +417,7 @@ const verifyOTP = asyncHandler(async (req, res) => {
       throw new ApiError(400, "OTP is required");
     }
 
-    console.log(req.session?.otpCode && req.session.otpCode);
+    console.log(req.session.userData);
     if (otp !== req.session.otpCode) {
       throw new ApiError(400, "Invalid OTP");
     }
