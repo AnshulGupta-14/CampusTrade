@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import session from "express-session";
-import MongoStore from "connect-mongo";
+// import MongoStore from "connect-mongo";
 import { ApiError } from "./Utils/ApiError.js";
 
 const app = express();
@@ -16,14 +16,10 @@ app.use(
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET, // Your session secret
+    secret: "Anshul", // Change this to a strong random secret
     resave: false,
     saveUninitialized: false,
-    cookie: {
-      secure: process.env.NODE_ENV === "production", // Ensure secure cookies in production
-      httpOnly: true,
-      maxAge: 1000 * 60 * 15, // Session expiration time in milliseconds (15 minutes here)
-    },
+    cookie: { secure: true }, // Set to true if using https
   })
 );
 
