@@ -45,7 +45,7 @@ const Landing = () => {
       {!isDesktop && (
         <div
           ref={boxRef}
-          className="absolute z-50 w-full h-full flex flex-col items-center overflow-hidden"
+          className="absolute z-50 w-full h-full flex flex-col items-center"
         >
           <div className="absolute top-[15%] mx-auto w-[70%] text-center">
             <h1 className="text-2xl font-semibold">Welcome to CampusTrade!</h1>
