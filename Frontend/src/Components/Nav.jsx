@@ -137,31 +137,31 @@ const Nav = ({ data }) => {
                 </div>
 
                 {showOver && (
-                  <div className="absolute top-12 bg-white p-3 z-20">
+                  <div className="absolute top-12 bg-white p-3 z-20 rounded-lg">
                     <div className="p-2 flex flex-col gap-2">
                       <Link
-                        className="p-2 rounded-lg bg-blue-500"
+                        className="p-2 rounded-lg bg-zinc-500"
                         to={`/profile/${jwtDecode(accessToken)._id}`}
                       >
                         MY PROFILE{" "}
                       </Link>
                       <Link
-                        className="p-2 rounded-lg bg-blue-500"
+                        className="p-2 rounded-lg bg-zinc-500"
                         to="/addproduct"
                       >
                         ADD PRODUCT{" "}
                       </Link>
                       <Link
-                        className="p-2 rounded-lg bg-blue-500"
+                        className="p-2 rounded-lg bg-zinc-500"
                         to="/favourites"
                       >
                         FAVOURITES{" "}
                       </Link>
-                      <Link className="p-2 rounded-lg bg-blue-500" to="/my-ads">
+                      <Link className="p-2 rounded-lg bg-zinc-500" to="/my-ads">
                         MY ADS{" "}
                       </Link>
                       <Link
-                        className="p-2 rounded-lg bg-blue-500"
+                        className="p-2 rounded-lg bg-zinc-500"
                         onClick={handleLogout}
                       >
                         LOGOUT
