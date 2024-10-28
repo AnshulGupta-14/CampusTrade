@@ -189,8 +189,8 @@ const UserProfile = () => {
               ></Cards>
             </div>
           ) : (
-            <div className="w-full p-5 pt-[10%] flex flex-col items-center justify-center">
-              <img src="/Empty.png" alt="" className="w-full" />
+            <div className="w-full p-5 flex flex-col items-center justify-center">
+              <img src="/Empty.png" alt="" className="w-1/2" />
               <h1 className="text-xl font-bold mt-7">
                 You haven't listed anything yet
               </h1>
