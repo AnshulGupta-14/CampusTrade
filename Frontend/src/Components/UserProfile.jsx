@@ -145,7 +145,7 @@ const UserProfile = () => {
 
       {!isDesktop && (
         <div className="pt-[22%] flex flex-col relative">
-          <div className="w-full p-5 flex gap-10">
+          <div className="w-full p-5 flex gap-10 items-center justify-center">
             <img
               src={user.avatar}
               alt=""
