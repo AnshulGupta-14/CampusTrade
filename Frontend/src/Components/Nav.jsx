@@ -49,7 +49,7 @@ const Nav = ({ data }) => {
         <>
           <div className="w-full h-[12vh] p-2 bg-zinc-300 px-10 flex items-center">
             <div className="w-[10%] h-full flex items-center">
-              <img src="MainLogo.png" alt="" className="w-[80%] h-full" />
+              <img src="MainLogo.png" alt="" className="w-[80%] h-full cursor-pointer" onClick={()=>navigate("/home")}/>
             </div>
             <div className="relative p-1 h-[80%] w-[60%] mx-auto flex justify-between">
               <button className="p-3 mr-2 flex items-center bg-[#003034] text-white text-2xl rounded-lg">
@@ -100,6 +100,7 @@ const Nav = ({ data }) => {
                     )}
               </div>
             </div>
+
             {!accessToken ? (
               <div className="w-[10%]">
                 <NavLink
