@@ -35,7 +35,7 @@ const App = () => {
       )}
 
       {!isDesktop && (
-        <div className="w-full min-h-[93vh] bg-zinc-200">
+        <div className="w-full min-h-[95vh] bg-zinc-200">
           <Nav data={products}></Nav>
           <Routing></Routing>
         </div>
