@@ -34,7 +34,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full h-[100%] pt-[6%] flex items-center justify-center bg-red-500">
+    <div className="w-full pt-[6%] flex items-center justify-center bg-red-500">
       {isDesktop && (
         <div className="w-[30%] flex flex-col px-10 py-5 bg-white rounded-xl">
           <h1 className="text-2xl font-bold ">Sign in</h1>
@@ -89,7 +89,7 @@ const Login = () => {
       )}
 
       {!isDesktop && (
-        <div className="w-[80%] flex flex-col px-10 py-5 bg-white rounded-xl">
+        <div className="w-[80%] h-fit m-auto flex flex-col px-10 py-5 bg-white rounded-xl">
           <h1 className="text-2xl font-bold ">Sign in</h1>
           <h2 className="mt-5">Registration no.</h2>
           <input
