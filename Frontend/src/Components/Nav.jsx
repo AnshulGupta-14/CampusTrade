@@ -140,28 +140,28 @@ const Nav = ({ data }) => {
                   <div className="absolute top-12 bg-white p-3 z-20 rounded-lg">
                     <div className="p-2 flex flex-col gap-2">
                       <Link
-                        className="p-2 rounded-lg bg-zinc-500"
+                        className="p-2 rounded-lg bg-zinc-400"
                         to={`/profile/${jwtDecode(accessToken)._id}`}
                       >
                         MY PROFILE{" "}
                       </Link>
                       <Link
-                        className="p-2 rounded-lg bg-zinc-500"
+                        className="p-2 rounded-lg bg-zinc-400"
                         to="/addproduct"
                       >
                         ADD PRODUCT{" "}
                       </Link>
                       <Link
-                        className="p-2 rounded-lg bg-zinc-500"
+                        className="p-2 rounded-lg bg-zinc-400"
                         to="/favourites"
                       >
                         FAVOURITES{" "}
                       </Link>
-                      <Link className="p-2 rounded-lg bg-zinc-500" to="/my-ads">
+                      <Link className="p-2 rounded-lg bg-zinc-400" to="/my-ads">
                         MY ADS{" "}
                       </Link>
                       <Link
-                        className="p-2 rounded-lg bg-zinc-500"
+                        className="p-2 rounded-lg bg-zinc-400"
                         onClick={handleLogout}
                       >
                         LOGOUT
