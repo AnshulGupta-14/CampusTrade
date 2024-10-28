@@ -86,7 +86,8 @@ const registerUser = asyncHandler(async (req, res) => {
   const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
   await sendOTPFromTwilio(otpCode, mobno);
 
-  const userData = {
+  req.session.otpCode = otpCode;
+  req.session.userData = {
     fullname,
     email,
     username,
@@ -99,14 +100,12 @@ const registerUser = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "Lax", // CSRF protection
+    sameSite: "None", // CSRF protection
     path: "/",
   };
 
   return res
     .status(200)
-    .cookie("otpCode", otpCode, options)
-    .cookie("userData", userData, options)
     .json(new ApiResponse(200, null, "OTP sent successfully"));
 });
 
@@ -143,7 +142,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "Lax", // CSRF protection
+    sameSite: "None", // CSRF protection
     path: "/",
   };
 
@@ -152,11 +151,11 @@ const loginUser = asyncHandler(async (req, res) => {
   );
 
   // console.log(user);
+  req.session.accessToken = accessToken;
+  req.session.refreshToken = refreshToken;
 
   return res
     .status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
     .json(
       new ApiResponse(
         200,
@@ -182,19 +181,20 @@ const logoutUser = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: true,
-    sameSite: "Lax", // CSRF protection
+    sameSite: "None", // CSRF protection
   };
+
+  delete req.session.accessToken;
+  delete req.session.refreshToken;
 
   return res
     .status(200)
-    .clearCookie("accessToken", options)
-    .clearCookie("refreshToken", options)
     .json(new ApiResponse(200, {}, "User logged out successfully"));
 });
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
   const incommingRefreshToken =
-    req.cookies.refreshToken || req.body.refreshToken;
+    req.session.refreshToken || req.body.refreshToken;
 
   if (!incommingRefreshToken) {
     throw new ApiError(401, "Unauthorized request");
@@ -218,17 +218,18 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     const options = {
       httpOnly: true,
       secure: true,
-      sameSite: "Lax", // CSRF protection
+      sameSite: "None", // CSRF protection
     };
 
     const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(
       user
     );
 
+    req.session.accessToken = accessToken;
+    req.session.refreshToken = refreshToken;
+
     return res
       .status(200)
-      .cookie("accessToken", accessToken, options)
-      .cookie("refreshToken", refreshToken, options)
       .json(
         new ApiResponse(
           200,
@@ -409,13 +410,14 @@ const updateMobileNumber = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: true,
-    sameSite: "Lax", // CSRF protection
+    sameSite: "None", // CSRF protection
   };
+
+  req.session.otpCode = otpCode;
+  req.session.mobno = otpCode;
 
   return res
     .status(200)
-    .cookie("otpCode", otpCode, options)
-    .cookie("mobno", mobno, options)
     .json(new ApiResponse(200, null, "OTP sent successfully"));
 });
 
@@ -428,11 +430,11 @@ const verifyOTP = asyncHandler(async (req, res) => {
       throw new ApiError(400, "OTP is required");
     }
 
-    if (otp !== req.cookies.otpCode) {
+    if (otp !== req.session.otpCode) {
       throw new ApiError(400, "Invalid OTP");
     }
 
-    if (req.cookies.userData) {
+    if (req.session.userData) {
       const {
         fullname,
         email,
@@ -442,7 +444,7 @@ const verifyOTP = asyncHandler(async (req, res) => {
         mobno,
         avatar,
         coverImage,
-      } = req.cookies.userData;
+      } = req.session.userData;
 
       const user = await User.create({
         fullname,
@@ -458,13 +460,14 @@ const verifyOTP = asyncHandler(async (req, res) => {
       const options = {
         httpOnly: true,
         secure: true,
-        sameSite: "Lax", // CSRF protection
+        sameSite: "None", // CSRF protection
       };
+
+      delete req.session.otpCode;
+      delete req.session.userData;
 
       return res
         .status(201)
-        .clearCookie("otpCode", options)
-        .clearCookie("userData", options)
         .json(new ApiResponse(201, user, "User registered successfully"));
     } else {
       const mobno = req.cookies.mobno;
@@ -477,10 +480,11 @@ const verifyOTP = asyncHandler(async (req, res) => {
       );
 
       console.log(user);
+      delete req.session.otpCode;
+      delete req.session.mobno;
+
       return res
         .status(200)
-        .clearCookie("otpCode", options)
-        .clearCookie("mobno", options)
         .json(new ApiResponse(200, user, "Mobile number updated successfully"));
     }
   } catch (error) {

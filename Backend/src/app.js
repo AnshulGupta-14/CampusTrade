@@ -1,8 +1,22 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import session from "express-session";
+import connectRedis from "connect-redis";
+import { createClient } from "redis";
 
 const app = express();
+const RedisStore = connectRedis(session);
+
+const redisClient = createClient({
+  password: "ann6p20z4VImosJXAin068qGqQs5u2YD",
+  socket: {
+    host: "redis-13185.c305.ap-south-1-1.ec2.redns.redis-cloud.com",
+    port: 13185,
+  },
+});
+
+await redisClient.connect().catch(console.error);
 
 app.use(
   cors({
@@ -11,28 +25,19 @@ app.use(
   })
 );
 
-// try {
-//   app.use(
-//     session({
-//       store: MongoStore.create({
-//         mongoUrl: `${process.env.MONGO_URI}/${process.env.DB_NAME}`, // MongoDB URI, e.g., "mongodb://localhost:27017/yourdbname"
-//         collectionName: 'sessions',
-//         ttl: 14 * 24 * 60 * 60, // Session expiration time (in seconds), here set to 14 days
-//         autoRemove: "native", // Automatically remove expired sessions
-//       }),
-//       secret: process.env.SESSION_SECRET, // Your session secret
-//       resave: false,
-//       saveUninitialized: false,
-//       cookie: {
-//         secure: process.env.NODE_ENV === "production", // Ensure secure cookies in production
-//         httpOnly: true,
-//         maxAge: 1000 * 60 * 15, // Session expiration time in milliseconds (15 minutes here)
-//       },
-//     })
-//   );
-// } catch (error) {
-//   console.error("Failed to initialize session store:", error);
-// }
+app.use(
+  session({
+    store: new RedisStore({ client: redisClient }),
+    secret: process.env.SESSION_SECRET, // Replace with a strong secret key
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: true, // Set true if using HTTPS in production
+      sameSite: "None", // Adjust for cross-origin if needed
+      httpOnly: true, // Protects cookie from JavaScript access
+    },
+  })
+);
 
 app.use(cookieParser());
 app.use(express.json({ limit: "16kb" }));
