@@ -159,7 +159,7 @@ const Card = ({ data, close = false, onUpdate }) => {
           <div className="w-full h-[30%] bg-zinc-300 flex flex-col justify-center items-start px-5 py-1 oveflow-hidden">
             <h1 className="text-lg font-semibold">&#8377;{data.price}</h1>
             {data.title.length > 20 ? (
-              <p className="text-gray-600 leading-tight">{data.title.slice(0, 25)}...</p>
+              <p className="text-gray-600 leading-tight">{data.title.slice(0, 30)}...</p>
             ) : (
               <p className="text-gray-600">{data.title}</p>
             )}
