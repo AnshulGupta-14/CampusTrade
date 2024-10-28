@@ -55,7 +55,7 @@ const Landing = () => {
             <h1>Here, each book has a story,</h1>
             <h1>waiting to be rediscovered by you.</h1>
           </div>
-          <img src="/image.png" alt="" className="h-full w-full" />
+          <img src="/image.png" alt="" className="h-screen w-full" />
           <button
             className="absolute top-[80%] mt-5 px-5 py-2 bg-[#002f34] text-white rounded-xl"
             onClick={handleClick} 
