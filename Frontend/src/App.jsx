@@ -24,7 +24,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-zinc-200">
+    <div className="w-full min-h-[100vh] bg-zinc-200">
       <Nav data={products}></Nav>
       <Routing></Routing>
     </div>
