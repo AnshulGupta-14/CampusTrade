@@ -99,7 +99,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "None", // CSRF protection
+    sameSite: "Lax", // CSRF protection
     path: "/",
   };
 
@@ -143,7 +143,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "None", // CSRF protection
+    sameSite: "Lax", // CSRF protection
     path: "/",
   };
 
@@ -182,7 +182,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: true,
-    sameSite: "None", // CSRF protection
+    sameSite: "Lax", // CSRF protection
   };
 
   return res
@@ -218,7 +218,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     const options = {
       httpOnly: true,
       secure: true,
-      sameSite: "None", // CSRF protection
+      sameSite: "Lax", // CSRF protection
     };
 
     const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(
@@ -409,7 +409,7 @@ const updateMobileNumber = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: true,
-    sameSite: "None", // CSRF protection
+    sameSite: "Lax", // CSRF protection
   };
 
   return res
@@ -458,7 +458,7 @@ const verifyOTP = asyncHandler(async (req, res) => {
       const options = {
         httpOnly: true,
         secure: true,
-        sameSite: "None", // CSRF protection
+        sameSite: "Lax", // CSRF protection
       };
 
       return res
