@@ -34,7 +34,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full pt-[6%] m-auto">
+    <div className="m-auto">
       {isDesktop && (
         <div className="w-[30%] flex flex-col px-10 py-5 bg-white rounded-xl">
           <h1 className="text-2xl font-bold ">Sign in</h1>
