@@ -145,7 +145,7 @@ const UserProfile = () => {
 
       {!isDesktop && (
         <div className="pt-[22%] h-[100vh] flex flex-col relative">
-          <div className="w-full p-5 h-[20%] flex gap-10 items-center justify-center">
+          <div className="w-full p-5 h-[25%] flex gap-10 items-center justify-center">
             <img
               src={user.avatar}
               alt=""
@@ -189,7 +189,7 @@ const UserProfile = () => {
               ></Cards>
             </div>
           ) : (
-            <div className="w-full h-[70%] p-5 flex flex-col items-center justify-center">
+            <div className="w-full h-[65%] p-5 flex flex-col items-center justify-center">
               <img src="/Empty.png" alt="" className="w-1/2" />
               <h1 className="text-xl font-bold mt-7">
                 You haven't listed anything yet
