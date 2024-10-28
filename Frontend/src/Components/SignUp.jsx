@@ -124,7 +124,7 @@ const SignUp = () => {
       )}
 
       {!isDesktop && (
-        <div className="w-full h-[93vh] pt-[8%] flex items-center justify-center text-[13px] font-semibold">
+        <div className="w-full h-[93vh] pt-[15%] flex items-center justify-center text-[13px] font-semibold">
           <div className="w-[80%] flex flex-col px-10 py-5 bg-white rounded-xl">
             <h1 className="text-2xl font-bold ">Create Account</h1>
             <h2 className="mt-3">Your Name</h2>
