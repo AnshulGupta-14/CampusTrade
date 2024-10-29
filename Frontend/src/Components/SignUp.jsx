@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "../Utils/Axios";
 import { NavLink, useNavigate } from "react-router-dom";
-import Otp from "./Otp";
 import { errorHandler } from "../Utils/HandleError";
 import { useMediaQuery } from "react-responsive";
 
@@ -15,8 +14,10 @@ const SignUp = () => {
   const [reg, setreg] = useState(null);
   const [mobile, setmobile] = useState("");
   const [avatar, setavatar] = useState("");
+  const [Loading, setloading] = useState(false);
 
   const submithandler = () => {
+    setloading(true);
     const formData = new FormData();
 
     formData.append("username", username);
@@ -35,7 +36,8 @@ const SignUp = () => {
       })
       .catch((err) => {
         errorHandler(err);
-      });
+      })
+      .finally(() => setloading(false));
   };
 
   return (
@@ -116,8 +118,9 @@ const SignUp = () => {
             <input
               className="rounded-full mt-7 mx-auto w-1/3 px-5 py-2 bg-[#fcd12d]"
               type="submit"
-              value={"Register"}
+              value={Loading ? "Registering..." : "Register"}
               onClick={submithandler}
+              disabled={Loading}
             />
           </div>
         </div>
@@ -199,8 +202,9 @@ const SignUp = () => {
             <input
               className="rounded-full mt-7 mx-auto w-1/3 px-5 py-2 bg-[#fcd12d]"
               type="submit"
-              value={"Register"}
+              value={Loading ? "Registering..." : "Register"}
               onClick={submithandler}
+              disabled={Loading}
             />
           </div>
         </div>
