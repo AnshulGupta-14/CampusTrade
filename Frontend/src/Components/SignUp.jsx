@@ -17,7 +17,6 @@ const SignUp = () => {
   const [avatar, setavatar] = useState("");
 
   const submithandler = () => {
-    navigate("/otp");
     const formData = new FormData();
 
     formData.append("username", username);
@@ -30,7 +29,10 @@ const SignUp = () => {
     const url = "/users/register";
     axios
       .post(url, formData, { withCredentials: true })
-      .then((res) => {})
+      .then((res) => {
+        // console.log("hello");
+        navigate("/otp");
+      })
       .catch((err) => {
         errorHandler(err);
       });
