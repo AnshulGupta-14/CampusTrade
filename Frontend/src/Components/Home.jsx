@@ -93,7 +93,7 @@ const Home = () => {
               );
             })}
           </div>
-          <div className="w-full h-full px-[1.7%] -mt-5">
+          <div className="w-full h-full px-[1.4%] -mt-5">
             <Cards data={filter}></Cards>
           </div>
         </div>

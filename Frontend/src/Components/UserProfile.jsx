@@ -115,7 +115,7 @@ const UserProfile = () => {
             </div>
           </div>
           {products.length > 0 ? (
-            <div className="w-[75%] p-5">
+            <div className="w-[75%] px-[.77%] p-5">
               <h1 className="text-2xl font-bold">Your Products</h1>
               <Cards
                 data={products}
