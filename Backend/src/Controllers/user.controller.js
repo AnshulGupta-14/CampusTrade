@@ -75,14 +75,6 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Avatar file is required");
   }
 
-  const avatar = await uploadOnCloudinary(avatarLocalPath);
-  const coverImage = await uploadOnCloudinary(coverImageLocalPath);
-  //   console.log(avatar);
-
-  if (!avatar) {
-    throw new ApiError(400, "Avatar file is required");
-  }
-
   const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
   await sendOTPFromTwilio(otpCode, mobno);
 
@@ -92,9 +84,9 @@ const registerUser = asyncHandler(async (req, res) => {
     username,
     password,
     regno,
+    avatarLocalPath,
+    coverImageLocalPath,
     mobno,
-    avatar,
-    coverImage,
   };
   const options = {
     httpOnly: true,
@@ -433,16 +425,17 @@ const verifyOTP = asyncHandler(async (req, res) => {
     }
 
     if (req.cookies.userData) {
-      const {
-        fullname,
-        email,
-        username,
-        password,
-        regno,
-        mobno,
-        avatar,
-        coverImage,
-      } = req.cookies.userData;
+      const { avatarLocalPath, coverImageLocalPath } = req.cookies?.userData;
+
+      const avatar = await uploadOnCloudinary(avatarLocalPath);
+      const coverImage = await uploadOnCloudinary(coverImageLocalPath);
+      //   console.log(avatar);
+
+      if (!avatar) {
+        throw new ApiError(400, "Avatar file is required");
+      }
+      const { fullname, email, username, password, regno, mobno } =
+        req.cookies.userData;
 
       const user = await User.create({
         fullname,
