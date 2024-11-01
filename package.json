@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@webpunk/circular-text": "^1.3.4",
-    "connect-redis": "^7.1.1",
-    "redis": "^4.7.0"
-  }
-}
