@@ -58,7 +58,7 @@ const Home = () => {
   return (
     <div ref={boxRef}>
       {filter && isDesktop && (
-        <div className="py-[7%]">
+        <div className="pt-[7%] pb-[3%]">
           <div className="flex items-center justify-around bg-[#FCD12D] p-2">
             {categories.map((item, index) => {
               if (item === "All") {
