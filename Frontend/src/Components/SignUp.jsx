@@ -200,7 +200,7 @@ const SignUp = () => {
               accept="image/*"
             />
             <input
-              className="rounded-full mt-7 mx-auto w-1/3 px-5 py-2 bg-[#fcd12d]"
+              className="rounded-full mt-7 mx-auto w-1/2 px-5 py-2 bg-[#fcd12d]"
               type="submit"
               value={Loading ? "Registering..." : "Register"}
               onClick={submithandler}
