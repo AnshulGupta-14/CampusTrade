@@ -252,7 +252,8 @@ const AddProduct = () => {
 
           <input
             type="submit"
-            value="Add Product"
+            value={loading ? "Adding..." : "Add Product"}
+            disabled={loading}
             onClick={handleApi}
             className="ml-[40%] test-center mt-7 rounded-full px-7 py-2 bg-[#fcd12d] cursor-pointer"
           />
@@ -364,6 +365,7 @@ const AddProduct = () => {
           <input
             type="submit"
             value={loading ? "Adding..." : "Add Product"}
+            disabled={loading}
             onClick={handleApi}
             className="ml-[40%] test-center mt-7 rounded-full px-7 py-2 bg-[#fcd12d] cursor-pointer"
           />
