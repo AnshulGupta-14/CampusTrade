@@ -15,8 +15,10 @@ const Login = () => {
   const [regno, setregno] = useState("");
   const [password, setpassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const submithandler = () => {
+    setLoading(true);
     const url = "/users/login";
     const data = { regno, password };
 
@@ -30,7 +32,8 @@ const Login = () => {
       })
       .catch((err) => {
         errorHandler(err);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -73,7 +76,8 @@ const Login = () => {
             <input
               className="rounded-full mt-7 mx-auto w-1/3 px-5 py-2 bg-[#fcd12d]"
               type="submit"
-              value={"Login"}
+              value={loading ? "Wait..." : "Login"}
+              disabled={loading}
               onClick={submithandler}
             />
 
@@ -128,7 +132,8 @@ const Login = () => {
             <input
               className="rounded-full mt-7 mx-auto w-1/3 px-5 py-2 bg-[#fcd12d]"
               type="submit"
-              value={"Login"}
+              value={loading ? "Wait..." : "Login"}
+              disabled={loading}
               onClick={submithandler}
             />
 
