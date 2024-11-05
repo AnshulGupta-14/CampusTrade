@@ -8,6 +8,7 @@ import { useMediaQuery } from "react-responsive";
 const AddProduct = () => {
   const isDesktop = useMediaQuery({ minWidth: 1224 });
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [title, settitle] = useState("");
   const [description, setdescription] = useState("");
   const [price, setprice] = useState("");
@@ -79,6 +80,7 @@ const AddProduct = () => {
   };
 
   const handleApi = () => {
+    setLoading(true);
     if (validateFields()) {
       // Scroll to the first error field
       const firstErrorKey = Object.keys(errors).find((key) => errors[key]);
@@ -140,7 +142,8 @@ const AddProduct = () => {
       })
       .catch((err) => {
         errorHandler(err);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -360,7 +363,7 @@ const AddProduct = () => {
 
           <input
             type="submit"
-            value="Add Product"
+            value={loading ? "Adding..." : "Add Product"}
             onClick={handleApi}
             className="ml-[40%] test-center mt-7 rounded-full px-7 py-2 bg-[#fcd12d] cursor-pointer"
           />
