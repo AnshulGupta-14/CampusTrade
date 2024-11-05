@@ -58,7 +58,7 @@ const Home = () => {
   return (
     <div ref={boxRef}>
       {filter && isDesktop && (
-        <div className="pt-[7%]">
+        <div className="py-[7%]">
           <div className="flex items-center justify-around bg-[#FCD12D] p-2">
             {categories.map((item, index) => {
               if (item === "All") {
@@ -99,7 +99,7 @@ const Home = () => {
         </div>
       )}
       {filter && !isDesktop && (
-        <div className="w-full h-full px-[1.8%] pt-[20%]">
+        <div className="w-full h-full px-[1.8%] pt-[20%] pb-[5%]">
           <Cards data={filter}></Cards>
         </div>
       )}
