@@ -184,7 +184,7 @@ const ProductDetails = () => {
               <h1 className="text-3xl font-bold">&#8377; {product.price}</h1>
               <h1>{product.title}</h1>
             </div>
-            <div className="w-full bg-white px-5 py-3 rounded-md">
+            <div className="w-full bg-white rounded-md">
               <NavLink to={`/profile/${product.owner}`}>
                 <div className="w-full flex items-center gap-7">
                   <div className="h-[13vh] w-[7vw]">
