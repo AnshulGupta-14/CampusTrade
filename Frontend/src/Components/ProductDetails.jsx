@@ -144,13 +144,13 @@ const ProductDetails = () => {
                 )}
                 <button
                   onClick={handlePrev}
-                  className="absolute -left-5 text-3xl p-2 bg-white rounded-full"
+                  className="absolute -left-5 text-xl p-2 bg-white rounded-full"
                 >
                   <FaChevronLeft />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="absolute -right-5 text-3xl p-2 bg-white rounded-full"
+                  className="absolute -right-5 text-xl p-2 bg-white rounded-full"
                 >
                   <FaChevronRight />
                 </button>
