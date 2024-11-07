@@ -46,7 +46,7 @@ const ProductDetails = () => {
   return (
     <>
       {isDesktop && (
-        <div className="w-full flex ites-center mt-[6%] px-5">
+        <div className="w-full flex ites-center mt-[7%] px-5">
           <div className="z-50">
             <button
               onClick={handlePrev}
@@ -56,7 +56,7 @@ const ProductDetails = () => {
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-[37%] text-3xl p-2 bg-white rounded-full top-[45%]"
+              className="absolute right-[36%] text-3xl p-2 bg-white rounded-full top-[45%]"
             >
               <FaChevronRight />
             </button>
