@@ -285,8 +285,8 @@ const Nav = ({ data }) => {
                           alt=""
                         />
                         <div>
-                          <h1>{s.title}</h1>
-                          <h3 className="text">s.price</h3>
+                          <h1 className="truncate">{s.title}</h1>
+                          <h3 className="text">{s.price}</h3>
                         </div>
                       </Link>
                     );
