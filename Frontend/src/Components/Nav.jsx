@@ -280,7 +280,7 @@ const Nav = ({ data }) => {
                         className="p-5 w-full bg-zinc-400 p-2 hover:bg-zinc-300 hover:font-semibold border-b-2 border-white duration-300 flex items-center justify-start"
                       >
                         <img
-                          className="w-[5vw] h-[10vh] object-cover object-center rounded-full mr-10 shadow-xl bg-black"
+                          className="w-[10vw] h-[5vh] object-cover object-center rounded-full mr-10 shadow-xl bg-black"
                           src={s.image[0]}
                           alt=""
                         />
