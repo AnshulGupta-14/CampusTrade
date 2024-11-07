@@ -45,6 +45,18 @@ const ProductDetails = () => {
 
   return (
     <>
+      <button
+        onClick={handlePrev}
+        className="absolute -left-5 text-3xl p-2 bg-white rounded-full"
+      >
+        <FaChevronLeft />
+      </button>
+      <button
+        onClick={handleNext}
+        className="absolute -right-5 text-3xl p-2 bg-white rounded-full"
+      >
+        <FaChevronRight />
+      </button>
       {isDesktop && (
         <div className="w-full flex ites-center mt-[6%] px-5">
           <div className="w-[65%] p-5">
@@ -57,18 +69,6 @@ const ProductDetails = () => {
                     className="h-full w-full object-cover"
                   />
                 )}
-                <button
-                  onClick={handlePrev}
-                  className="absolute -left-5 text-3xl p-2 bg-white rounded-full"
-                >
-                  <FaChevronLeft />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="absolute -right-5 text-3xl p-2 bg-white rounded-full"
-                >
-                  <FaChevronRight />
-                </button>
                 {product.image && (
                   <h1 className="absolute bottom-5 right-5 bg-black text-white text-[10px] rounded-full py-[7px] px-1">
                     {curidx + 1} / {product.image.length}
@@ -141,7 +141,7 @@ const ProductDetails = () => {
                   className="h-full w-full object-cover"
                 />
               )}
-              <button
+              {/* <button
                 onClick={handlePrev}
                 className="absolute -left-5 text-xl p-2 bg-white rounded-full"
               >
@@ -152,7 +152,7 @@ const ProductDetails = () => {
                 className="absolute -right-5 text-xl p-2 bg-white rounded-full"
               >
                 <FaChevronRight />
-              </button>
+              </button> */}
               {product.image && (
                 <h1 className="absolute bottom-5 right-5 bg-black text-white text-[10px] rounded-full py-[7px] px-1">
                   {curidx + 1} / {product.image.length}
