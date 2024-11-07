@@ -132,54 +132,52 @@ const ProductDetails = () => {
 
       {!isDesktop && (
         <div className="w-full flex flex-col ites-center mt-[26%] px-5 py-5">
-          <div className="w-full">
-            <div className="relative w-full bg-white h-[50vh] rounded-lg overflow-hidden">
-              <div className="relative flex items-center justify-center h-[80%] w-full">
-                {product.image && (
-                  <img
-                    src={product.image[curidx]}
-                    alt=""
-                    className="h-full w-full object-cover"
-                  />
-                )}
-                <button
-                  onClick={handlePrev}
-                  className="absolute -left-5 text-xl p-2 bg-white rounded-full"
-                >
-                  <FaChevronLeft />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="absolute -right-5 text-xl p-2 bg-white rounded-full"
-                >
-                  <FaChevronRight />
-                </button>
-                {product.image && (
-                  <h1 className="absolute bottom-5 right-5 bg-black text-white text-[10px] rounded-full py-[7px] px-1">
-                    {curidx + 1} / {product.image.length}
-                  </h1>
-                )}
-              </div>
-              <div className="relative flex flex-wrap items-center h-[20%] w-full p-5 gap-5">
-                {product.image &&
-                  product.image.map((item, idx) => (
-                    <img
-                      key={idx}
-                      src={item}
-                      alt=""
-                      className={`h-full w-[20%] rounded-md ${
-                        curidx === idx && "border-2 border-black"
-                      }`}
-                    />
-                  ))}
-              </div>
+          <div className="relative w-full bg-white h-[50vh] rounded-lg overflow-hidden">
+            <div className="relative flex items-center justify-center h-[80%] w-full">
+              {product.image && (
+                <img
+                  src={product.image[curidx]}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+              )}
+              <button
+                onClick={handlePrev}
+                className="absolute -left-5 text-xl p-2 bg-white rounded-full"
+              >
+                <FaChevronLeft />
+              </button>
+              <button
+                onClick={handleNext}
+                className="absolute -right-5 text-xl p-2 bg-white rounded-full"
+              >
+                <FaChevronRight />
+              </button>
+              {product.image && (
+                <h1 className="absolute bottom-5 right-5 bg-black text-white text-[10px] rounded-full py-[7px] px-1">
+                  {curidx + 1} / {product.image.length}
+                </h1>
+              )}
             </div>
-            <div className="w-full bg-white p-5 my-5 rounded-lg">
-              <h1 className="text-2xl font-bold mb-3">Description</h1>
-              <h1>{product.description}</h1>
+            <div className="relative flex flex-wrap items-center h-[20%] w-full p-5 gap-5">
+              {product.image &&
+                product.image.map((item, idx) => (
+                  <img
+                    key={idx}
+                    src={item}
+                    alt=""
+                    className={`h-full w-[20%] rounded-md ${
+                      curidx === idx && "border-2 border-black"
+                    }`}
+                  />
+                ))}
             </div>
           </div>
           <div className="w-full flex flex-col gap-5">
+            <div className="w-full bg-white p-5 rounded-lg">
+              <h1 className="text-2xl font-bold mb-3">Description</h1>
+              <h1>{product.description}</h1>
+            </div>
             <div className="w-full bg-white px-5 py-3 rounded-md">
               <h1 className="text-xl font-bold">&#8377; {product.price}</h1>
               <h1>{product.title}</h1>
