@@ -45,20 +45,22 @@ const ProductDetails = () => {
 
   return (
     <>
-      <button
-        onClick={handlePrev}
-        className="absolute left-5 text-3xl p-2 bg-white rounded-full top-[40%]"
-      >
-        <FaChevronLeft />
-      </button>
-      <button
-        onClick={handleNext}
-        className="absolute right-[40%] text-3xl p-2 bg-white rounded-full top-[40%]"
-      >
-        <FaChevronRight />
-      </button>
       {isDesktop && (
         <div className="w-full flex ites-center mt-[6%] px-5">
+          <div className="z-50">
+            <button
+              onClick={handlePrev}
+              className="absolute left-5 text-3xl p-2 bg-white rounded-full top-[40%]"
+            >
+              <FaChevronLeft />
+            </button>
+            <button
+              onClick={handleNext}
+              className="absolute right-[30%] text-3xl p-2 bg-white rounded-full top-[40%]"
+            >
+              <FaChevronRight />
+            </button>
+          </div>
           <div className="w-[65%] p-5">
             <div className="relative w-full bg-white h-[85vh] rounded-md overflow-hidden">
               <div className="relative flex items-center justify-center h-[80%] w-full">
