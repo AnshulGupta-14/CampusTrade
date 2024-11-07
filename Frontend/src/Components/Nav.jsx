@@ -286,8 +286,7 @@ const Nav = ({ data }) => {
                         />
                         <div>
                           <h1>{s.title}</h1>
-                          <h3 className="text-sm">By {s.author}</h3>
-                          <h3 className="text-sm">Price</h3>
+                          <h3 className="text">s.price</h3>
                         </div>
                       </Link>
                     );
