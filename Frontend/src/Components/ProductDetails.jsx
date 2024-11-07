@@ -134,6 +134,20 @@ const ProductDetails = () => {
 
       {!isDesktop && (
         <div className="w-full flex flex-col ites-center mt-[26%] px-5 py-5 gap-5">
+          <div>
+            <button
+              onClick={handlePrev}
+              className="absolute -left-5 text-xl p-2 bg-white rounded-full top-[40%]"
+            >
+              <FaChevronLeft />
+            </button>
+            <button
+              onClick={handleNext}
+              className="absolute -right-5 text-xl p-2 bg-white rounded-full top-[40%]"
+            >
+              <FaChevronRight />
+            </button>
+          </div>
           <div className="relative w-full bg-white h-[50vh] rounded-lg overflow-hidden">
             <div className="relative flex items-center justify-center h-[80%] w-full">
               {product.image && (
@@ -143,18 +157,6 @@ const ProductDetails = () => {
                   className="h-full w-full object-cover"
                 />
               )}
-              {/* <button
-                onClick={handlePrev}
-                className="absolute -left-5 text-xl p-2 bg-white rounded-full"
-              >
-                <FaChevronLeft />
-              </button>
-              <button
-                onClick={handleNext}
-                className="absolute -right-5 text-xl p-2 bg-white rounded-full"
-              >
-                <FaChevronRight />
-              </button> */}
               {product.image && (
                 <h1 className="absolute bottom-5 right-5 bg-black text-white text-[10px] rounded-full py-[7px] px-1">
                   {curidx + 1} / {product.image.length}
