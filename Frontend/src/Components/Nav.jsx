@@ -277,7 +277,7 @@ const Nav = ({ data }) => {
                         onClick={() => setsearch("")}
                         to={`/productdetails/${s._id}`}
                         key={i}
-                        className="p-5 w-full bg-zinc-400 p-2 hover:bg-zinc-300 hover:font-semibold border-b-2 border-white duration-300 flex items-center gap-5"
+                        className="p-5 w-full bg-zinc-400 p-2 hover:bg-zinc-300 hover:font-semibold border-b-2 border-white duration-300 flex items-center gap-5 overflow-hidden"
                       >
                         <img
                           className="w-[10vw] h-[5vh] object-cover object-center rounded-full shadow-xl bg-black"
