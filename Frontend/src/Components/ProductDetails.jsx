@@ -174,12 +174,12 @@ const ProductDetails = () => {
                   ))}
               </div>
             </div>
-            <div className="w-full bg-white p-5 mt-5 rounded-md">
+            <div className="w-full bg-white p-5 mt-5 rounded-lg">
               <h1 className="text-2xl font-bold mb-3">Description</h1>
               <h1>{product.description}</h1>
             </div>
           </div>
-          <div className="w-[35%] p-5 flex flex-col gap-5">
+          <div className="w-full p-5 flex flex-col gap-5">
             <div className="w-full bg-white px-5 py-3 rounded-md">
               <h1 className="text-3xl font-bold">&#8377; {product.price}</h1>
               <h1>{product.title}</h1>
