@@ -152,7 +152,7 @@ const Card = ({ data, close = false, onUpdate }) => {
             />
             <div className="h-full w-full absolute inset-0 bg-black opacity-30" />
           </div>
-          <div className="w-full h-[30%] bg-zinc-300 px-5 overflow-hidden py-2 text-sm leading-snug">
+          <div className="w-full h-[30%] bg-zinc-300 px-5 overflow-hidden py-2 text-sm leading-tight">
             <h1 className="text-lg font-semibold">&#8377;{data.price}</h1>
             <p className="line-clamp-2 text-gray-600">{data.title}</p>
           </div>
