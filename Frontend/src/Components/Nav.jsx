@@ -284,7 +284,7 @@ const Nav = ({ data }) => {
                           src={s.image[0]}
                           alt=""
                         />
-                        <div>
+                        <div className="w-full">
                           <h1 className="truncate">{s.title}</h1>
                           <h3 className="text">{s.price}</h3>
                         </div>
