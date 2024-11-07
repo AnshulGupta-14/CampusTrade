@@ -167,21 +167,21 @@ const ProductDetails = () => {
                       key={idx}
                       src={item}
                       alt=""
-                      className={`h-full w-[10%] rounded-lg ${
+                      className={`h-full w-[20%] rounded-md ${
                         curidx === idx && "border-2 border-black"
                       }`}
                     />
                   ))}
               </div>
             </div>
-            <div className="w-full bg-white p-5 mt-5 rounded-lg">
+            <div className="w-full bg-white p-5 my-5 rounded-lg">
               <h1 className="text-2xl font-bold mb-3">Description</h1>
               <h1>{product.description}</h1>
             </div>
           </div>
           <div className="w-full flex flex-col gap-5">
             <div className="w-full bg-white px-5 py-3 rounded-md">
-              <h1 className="text-3xl font-bold">&#8377; {product.price}</h1>
+              <h1 className="text-xl font-bold">&#8377; {product.price}</h1>
               <h1>{product.title}</h1>
             </div>
             <div className="w-full bg-white rounded-md px-5 py-3">
