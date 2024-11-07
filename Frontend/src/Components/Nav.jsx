@@ -253,7 +253,7 @@ const Nav = ({ data }) => {
               <img src="MainLogo.png" alt="" className="w-full h-full" />
             </div>
           </div>
-          <div className="relative p-2 px-5 mt-1 h-[5vh] w-full flex justify-between bg-zinc-300">
+          <div className="relative p-2 px-5 mt-1 h-[5vh] w-full flex justify-between bg-zinc-300 fixed">
             <input
               type="text"
               placeholder="Find Books"
