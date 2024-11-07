@@ -56,7 +56,7 @@ const ProductDetails = () => {
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-[35.5%] text-3xl p-2 bg-white rounded-full top-[45%]"
+              className="absolute right-[35.2%] text-3xl p-2 bg-white rounded-full top-[45%]"
             >
               <FaChevronRight />
             </button>
