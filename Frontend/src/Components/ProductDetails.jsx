@@ -131,9 +131,9 @@ const ProductDetails = () => {
       )}
 
       {!isDesktop && (
-        <div className="w-full flex flex-col ites-center mt-[26%] px-5 bg-red-500">
-          <div className="w-full p-5">
-            <div className="relative w-full bg-white h-[85vh] rounded-md">
+        <div className="w-full flex flex-col ites-center mt-[26%] px-5">
+          <div className="w-full py-5">
+            <div className="relative w-full bg-white h-[50vh] rounded-md">
               <div className="relative flex items-center justify-center h-[80%] w-full">
                 {product.image && (
                   <img
