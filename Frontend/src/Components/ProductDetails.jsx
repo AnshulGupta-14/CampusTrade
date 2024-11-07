@@ -179,12 +179,12 @@ const ProductDetails = () => {
               <h1>{product.description}</h1>
             </div>
           </div>
-          <div className="w-full p-5 flex flex-col gap-5">
+          <div className="w-full flex flex-col gap-5">
             <div className="w-full bg-white px-5 py-3 rounded-md">
               <h1 className="text-3xl font-bold">&#8377; {product.price}</h1>
               <h1>{product.title}</h1>
             </div>
-            <div className="w-full bg-white rounded-md">
+            <div className="w-full bg-white rounded-md px-5 py-3">
               <NavLink to={`/profile/${product.owner}`}>
                 <div className="w-full flex items-center gap-7">
                   <div className="h-[7vh] w-[14vw]">
