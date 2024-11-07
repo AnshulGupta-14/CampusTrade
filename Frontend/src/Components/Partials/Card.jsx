@@ -144,7 +144,7 @@ const Card = ({ data, close = false, onUpdate }) => {
               ></i>
             )
           )}
-          <div className="w-full h-[70%] relative">
+          <div className="w-full h-[65%] relative">
             <img
               src={data.image[0]}
               alt=""
@@ -152,7 +152,7 @@ const Card = ({ data, close = false, onUpdate }) => {
             />
             <div className="h-full w-full absolute inset-0 bg-black opacity-30" />
           </div>
-          <div className="w-full h-[30%] bg-zinc-300 px-3 overflow-hidden py-2 text-sm leading-tight">
+          <div className="w-full h-[35%] bg-zinc-300 px-3 overflow-hidden py-2 text-sm leading-none">
             <h1 className="text-lg font-semibold">&#8377;{data.price}</h1>
             <p className="line-clamp-2 text-gray-600">{data.title}</p>
           </div>
