@@ -134,7 +134,7 @@ const ProductDetails = () => {
 
       {!isDesktop && (
         <div className="w-full flex flex-col ites-center mt-[26%] px-5 py-5 gap-5">
-          <div>
+          <div className="z-50">
             <button
               onClick={handlePrev}
               className="absolute left-5 text-xl p-2 bg-white rounded-full top-[40%]"
