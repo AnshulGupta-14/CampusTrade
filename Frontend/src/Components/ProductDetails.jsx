@@ -166,7 +166,7 @@ const ProductDetails = () => {
                     key={idx}
                     src={item}
                     alt=""
-                    className={`h-full w-[20%] rounded-md ${
+                    className={`h-full w-[15%] rounded-md ${
                       curidx === idx && "border-2 border-black"
                     }`}
                   />
