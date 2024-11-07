@@ -187,7 +187,7 @@ const ProductDetails = () => {
             <div className="w-full bg-white rounded-md">
               <NavLink to={`/profile/${product.owner}`}>
                 <div className="w-full flex items-center gap-7">
-                  <div className="h-[13vh] w-[7vw]">
+                  <div className="h-[7vh] w-[14vw]">
                     <img
                       src={user.avatar}
                       alt=""
