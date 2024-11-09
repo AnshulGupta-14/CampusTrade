@@ -3,7 +3,7 @@ import "remixicon/fonts/remixicon.css";
 
 const Footer = () => {
   return (
-    <footer className="footer p-5 px-12 mt-20">
+    <footer className="footer p-5 px-12 mt-20 bg-[#333333] text-white">
       <div className="footer-content flex flex-col gap-5">
         <div className="footer-section">
           <h3 className="text-xl font-semibold">About CampusTrade</h3>
