@@ -17,13 +17,13 @@ const Footer = () => {
           <h3 className="text-xl font-semibold">Quick Links</h3>
           <ul className="flex items-center gap-5 text-blue-500">
             <li className="hover:underline">
-              <a href="">Home</a>
+              <NavLink href="">Home</NavLink>
             </li>
             <li className="hover:underline">
-              <a href="">Browse Books</a>
+              <NavLink href="">Browse Books</NavLink>
             </li>
             <li className="hover:underline">
-              <a href="">Categories</a>
+              <NavLink href="">Categories</NavLink>
             </li>
           </ul>
         </div>
