@@ -5,6 +5,7 @@ import LocomotiveScroll from "locomotive-scroll";
 import { errorHandler } from "../Utils/HandleError";
 import { Link, useLocation } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import Footer from "./Footer";
 
 const Home = () => {
   const isDesktop = useMediaQuery({ minWidth: 1224 });
@@ -56,18 +57,34 @@ const Home = () => {
   console.log(products);
 
   return (
-    <div ref={boxRef}>
-      {filter && isDesktop && (
-        <div className="pt-[7%] pb-[3%]">
-          <div className="flex items-center justify-around bg-[#FCD12D] p-2">
-            {categories.map((item, index) => {
-              if (item === "All") {
+    <>
+      <div ref={boxRef} className="min-h-screen">
+        {filter && isDesktop && (
+          <div className="pt-[7%]">
+            <div className="flex items-center justify-around bg-[#FCD12D] p-2">
+              {categories.map((item, index) => {
+                if (item === "All") {
+                  return (
+                    <Link
+                      to="/home"
+                      key={item}
+                      className={`hover:text-blue-600 hover:font-semibold ${
+                        underline >= 0 &&
+                        underline === index &&
+                        "underline underline-offset-8 text-blue-600 font-semibold"
+                      }`}
+                      onClick={() => handleUnderline(index)}
+                    >
+                      {item}
+                    </Link>
+                  );
+                }
                 return (
                   <Link
-                    to="/home"
+                    to={`/home/?category=${item}`}
                     key={item}
                     className={`hover:text-blue-600 hover:font-semibold ${
-                      underline >= 0 &&
+                      underline &&
                       underline === index &&
                       "underline underline-offset-8 text-blue-600 font-semibold"
                     }`}
@@ -76,34 +93,21 @@ const Home = () => {
                     {item}
                   </Link>
                 );
-              }
-              return (
-                <Link
-                  to={`/home/?category=${item}`}
-                  key={item}
-                  className={`hover:text-blue-600 hover:font-semibold ${
-                    underline &&
-                    underline === index &&
-                    "underline underline-offset-8 text-blue-600 font-semibold"
-                  }`}
-                  onClick={() => handleUnderline(index)}
-                >
-                  {item}
-                </Link>
-              );
-            })}
+              })}
+            </div>
+            <div className="w-full h-full px-[1.4%] -mt-5">
+              <Cards data={filter}></Cards>
+            </div>
           </div>
-          <div className="w-full h-full px-[1.4%] -mt-5">
+        )}
+        {filter && !isDesktop && (
+          <div className="w-full h-full px-[1.8%] pt-[20%]">
             <Cards data={filter}></Cards>
           </div>
-        </div>
-      )}
-      {filter && !isDesktop && (
-        <div className="w-full h-full px-[1.8%] pt-[20%] pb-[5%]">
-          <Cards data={filter}></Cards>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+      <Footer></Footer>
+    </>
   );
 };
 
