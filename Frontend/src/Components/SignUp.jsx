@@ -16,7 +16,29 @@ const SignUp = () => {
   const [avatar, setavatar] = useState("");
   const [Loading, setloading] = useState(false);
 
+  const isValidEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  };
+
+  const isFormValid = () => {
+    if (!isValidEmail(email)) {
+      alert("Please enter a valid email address.");
+      return false;
+    }
+    if (mobile.length !== 10) {
+      alert("Mobile number must be exactly 10 digits.");
+      return false;
+    }
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters long.");
+      return false;
+    }
+    return true;
+  };
+
   const submithandler = () => {
+    if (!isFormValid()) return;
     setloading(true);
     const formData = new FormData();
 
