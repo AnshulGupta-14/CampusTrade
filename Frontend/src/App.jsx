@@ -4,10 +4,13 @@ import Nav from "./Components/Nav";
 import axios from "./Utils/Axios";
 import "remixicon/fonts/remixicon.css";
 import { useMediaQuery } from "react-responsive";
+import { useLocation } from "react-router-dom";
 
 const App = () => {
   const isDesktop = useMediaQuery({ minWidth: 1224 });
+  const location = useLocation();
   const [products, setproducts] = useState([]);
+  const hideNav = location.pathname === "/" || location.pathname === "/landing";
 
   useEffect(() => {
     const url = "/products/get-products";
@@ -29,7 +32,7 @@ const App = () => {
     <>
       {isDesktop && (
         <div className="w-full min-h-screen bg-zinc-200">
-          <Nav data={products}></Nav>
+          {!hideNav && <Nav data={products} />}
           <Routing></Routing>
         </div>
       )}

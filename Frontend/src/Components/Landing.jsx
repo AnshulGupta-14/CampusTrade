@@ -1,9 +1,10 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { useMediaQuery } from "react-responsive";
 
 const Landing = () => {
+  const [isLoading, setIsLoading] = useState  (true);
   const isDesktop = useMediaQuery({ minWidth: 1224 });
   const navigate = useNavigate();
   const boxRef = useRef(null);
@@ -15,6 +16,22 @@ const Landing = () => {
     });
     navigate("/home");
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#0d1117] flex items-center justify-center text-[#c9d1d9]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-24 w-24 border-b-2 border-[#58a6ff] mx-auto"></div>
+          <p className="mt-4 text-[#8b949e]">Loading CampusTrade...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
