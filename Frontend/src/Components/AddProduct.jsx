@@ -137,7 +137,7 @@ const AddProduct = () => {
       .then((res) => {
         if (res.data.message) {
           alert(res.data.message);
-          navigate("/");
+          navigate("/home");
         }
       })
       .catch((err) => {
